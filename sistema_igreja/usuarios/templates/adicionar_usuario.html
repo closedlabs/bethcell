@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block container %}
+<div class="col-md-12">
+	<div class="card">
+		<div class="card-header card-header-icon" data-background-color="rose">
+			<i class="material-icons"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">people</font></font></i>
+		</div>
+		<div class="card-content">
+			<h4 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cadastrar Novo Lider</font></font></h4>
+			<form method="POST">
+				{% csrf_token %}
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group label-floating is-empty">
+							<label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nome de Usuario</font></font></label>
+							{{ form.username.errors }}
+							{{form.username}}
+							<span class="material-input"></span>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group label-floating is-empty">
+							<label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nome</font></font></label>
+							{{ form.first_name.errors }}
+							{{form.first_name}}
+							<span class="material-input"></span>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group label-floating is-empty">
+							<label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Sobrenome</font></font></label>
+							{{ form.last_name.errors }}
+							{{form.last_name}}
+							<span class="material-input"></span>
+						</div>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group label-floating is-empty">
+							<label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Email</font></font></label>
+							{{ form.email.errors }}
+							{{form.email}}
+							<span class="material-input"></span>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group label-floating is-empty">
+							<label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Senha</font></font></label>
+							{{ form.password1.errors }}
+							{{form.password1}}
+							<span class="material-input"></span>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group label-floating is-empty">
+							<label class="control-label"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Confirmação de Senha</font></font></label>
+							{{ form.password2.errors }}
+							{{form.password2}}
+							<span class="material-input"></span>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="form-group label-floating is-empty">
+							<small>Função do Lider </small>
+							{{ form.tipo_lider.errors }}
+							{{form.tipo_lider}}
+							<span class="material-input"></span>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group label-floating is-empty">
+							<small>Lider de Geração</small>
+							{{ form.lider.errors }}
+							{{form.lider}}
+							<span class="material-input"></span>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="form-group label-floating is-empty">
+							<small>Sexo</small>
+							{{ form.sexo.errors }}
+							{{form.sexo}}
+							<span class="material-input"></span>
+						</div>
+					</div>
+				</div>				
+				
+				<button type="submit" class="btn btn-round btn-rose  pull-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cadastrar</font></font></button>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock container %}

@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block container %}
+
+<div class="row">
+	<div class="col-md-10 col-md-offset-1">
+		<div class="card card-pricing">
+			<br>
+			<h3 class="card-title text-center">Deseja Relamente Deletar?</h3>
+			<form class="form" method="POST">
+				{% csrf_token %}
+				<div class="card-content">
+					<div class="icon icon-rose">
+						<i class="material-icons">delete</i>
+					</div>
+					<h5><b>Diga abaixo por Qual Motivo Ele Está Saindo da Igreja.</b></h5>
+					<select name="motivo"class="selectpicker"data-style='select-with-transition'data-size="7">
+						<option value="Discípulo não compareceu às consolidações">Discípulo não compareceu às consolidações</option>
+						<option value="2">Discípulo Viajou</option>
+						<option value="3">Enviado como Líder</option>
+						<option value="4">Falecimento</option>
+						<option value="5">Incompatibilidade com o estilo de Igreja</option>
+						<option value="6">Lider não cuidou</option>
+					</select>
+				</div>
+				<div class="footer text-center">
+					<button type="submit" class="btn btn-primary btn-round">Excluir</button><a href="#pablo" class="btn btn-rose btn-round">Cancelar</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock %}

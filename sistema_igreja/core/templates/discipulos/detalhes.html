@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    Sobre {{discipulo.nome}}
+{% endblock title %}
+{% block container %}
+<div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-icon" data-background-color="rose">
+                    <i class="material-icons">people</i>
+                </div>
+                <div class="card-content">
+                    <h4 class="card-title">{{lider.user}}</h4>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead class="text-primary">
+                                <tr><th>Informações</th>
+                                <th>{{discipulo.nome|title}}</th>
+                            </tr></thead>
+                            <tbody>
+                                <tr>
+                                    <td><b>Data Nascimento</b></td>
+                                    <td>{{discipulo.nascimento|date:'d/m/Y'}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Lider</b></td>
+                                    <td>{{discipulo.lider|title}}</td>              
+                                </tr>
+                                <tr>
+                                    <td><b>Nº Celular</b></td>
+                                    <td>{{discipulo.telefone}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Facebook</b></td>
+                                    <td>{{discipulo.facebook}}</td>                              
+                                </tr>
+                                <tr>
+                                    <td><b>E-mail</b></td>
+                                    <td>{{discipulo.email}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Data de Conversão</b></td>
+                                    <td>{{discipulo.data_conversao}}</td>
+                                </tr>
+                                 <tr>
+                                    <td><b>Data de Encontro</b></td>
+                                    <td>{{discipulo.data_encontro}}</td>
+                                </tr>
+                                 <tr>
+                                    <td><b>Data de Batismo</b></td>
+                                    <td>{{discipulo.data_batismo}}</td>
+                                </tr>
+                                 <tr>
+                                    <td><b>Consolidador</b></td>
+                                    <td>{{discipulo.consolidador}}</td>
+                                </tr>
+                                <tr>
+                                    <td><b>Escolaridade</b></td>
+                                    <td>{{discipulo.get_escolaridade_status}}<td>
+                                </tr> 
+                                <tr>
+                                    <td><b>Profissão</b></td>
+                                    <td>{{discipulo.profissao}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock container %}

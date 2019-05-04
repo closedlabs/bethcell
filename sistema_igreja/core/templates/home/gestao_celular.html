@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+{% block title %}
+    Gerencia de Células
+{% endblock title %}
+{% block container %}
+<div class="row">   
+	<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="card card-stats">
+			<div class="card-header" data-background-color="rose">
+				<i class="material-icons">location_city</i>
+			</div>
+			<div class="card-content">
+				<p class="category">Células</p>
+				<h3 class="card-title">{{view.celulas_count}}</h3>
+			</div>
+			<div class="card-footer">
+				<div class="stats">
+					<i class="material-icons">visibility</i> <a href="{% url 'celulas' %}">Visualisar...</a>
+				</div>
+			</div>
+		</div>
+	</div>             
+	<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="card card-stats">
+			<div class="card-header" data-background-color="default">
+				<i class="material-icons">people</i>
+			</div>
+			<div class="card-content">
+				<p class="category">Líderes</p>
+				<h3 class="card-title">{{view.lideres_count}}</h3>
+			</div>
+			<div class="card-footer">
+				<div class="stats">
+					<i class="material-icons">visibility</i> <a href="{% url 'lista_lideres' %}">Visualisar...</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="card card-stats">
+			<div class="card-header" data-background-color="green">
+				<i class="material-icons">insert_emoticon</i>
+			</div>
+			<div class="card-content">
+				<p class="category">Discípulos</p>
+				<h3 class="card-title">{{view.discipulos_count}}</h3>
+			</div>
+			<div class="card-footer">
+				<div class="stats">
+					<i class="material-icons">visibility</i> <a href="{% url 'discipulos' %}">Visualisar...</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="card card-stats">
+			<div class="card-header" data-background-color="red">
+				<i class="material-icons">mood_bad</i>
+			</div>
+			<div class="card-content">
+				<p class="category">Evasões</p>
+				<h3 class="card-title">60</h3>
+			</div>
+			<div class="card-footer">
+				<div class="stats">
+					<i class="material-icons">visibility</i> <a href="{% url 'evasao' %}">Visualisar...</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">    
+	<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="card card-stats">
+			<div class="card-header" data-background-color="red">
+				<i class="material-icons">local_library</i>
+			</div>
+			<div class="card-content">
+				<p class="category">N1</p>
+				<h3 class="card-title">60</h3>
+			</div>
+			<div class="card-footer">
+				<div class="stats">
+					<i class="material-icons">visibility</i> <a href="list_n1.html">Visualisar...</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="card card-stats">
+			<div class="card-header" data-background-color="blue">
+				<i class="material-icons">local_library</i>
+			</div>
+			<div class="card-content">
+				<p class="category">N2</p>
+				<h3 class="card-title">60</h3>
+			</div>
+			<div class="card-footer">
+				<div class="stats">
+					<i class="material-icons">visibility</i> <a href="list_n2.html">Visualisar...</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="card card-stats">
+			<div class="card-header" data-background-color="green">
+				<i class="material-icons">local_library</i>
+			</div>
+			<div class="card-content">
+				<p class="category">N3</p>
+				<h3 class="card-title">60</h3>
+			</div>
+			<div class="card-footer">
+				<div class="stats">
+					<i class="material-icons">visibility</i> <a href="list_n3.html">Visualisar...</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="card card-stats">
+			<div class="card-header" data-background-color="grey">
+				<i class="material-icons">directions_walk</i>
+			</div>
+			<div class="card-content">
+				<p class="category">Trainee</p>
+				<h3 class="card-title">60</h3>
+			</div>
+			<div class="card-footer">
+				<div class="stats">
+					<i class="material-icons">visibility</i> <a href="list_trainee.html">Visualisar...</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-3 col-md-6 col-sm-6">
+		<div class="card card-stats">
+			<div class="card-header" data-background-color="green">
+				<i class="material-icons">directions_run</i>
+			</div>
+			<div class="card-content">
+				<p class="category">T. Formados</p>
+				<h3 class="card-title">60</h3>
+			</div>
+			<div class="card-footer">
+				<div class="stats">
+					<i class="material-icons">visibility</i> <a href="list_trainee_formado.html">Visualisar...</a>
+				</div>
+			</div>
+		</div>
+	</div>                   
+
+	<div class="col-lg-6 col-md-6 col-sm-6">
+		<div class="card card-stats">
+			<div class="card-header" data-background-color="orange">
+				<i class="material-icons">show_chart</i>
+			</div>
+			<div class="card-content">
+				<p class="category">BethCell</p>
+				<h3 class="card-title">Relatórios Estatísticos</h3>
+			</div>
+			<div class="card-footer">
+				<div class="stats">
+					<i class="material-icons">visibility</i> <a href="#">Visualisar...</a>
+				</div>
+			</div>
+		</div>
+	</div> 
+</div>
+
+{% endblock container %}

@@ -1,0 +1,14 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	{% for l in lider  %}
+		<h3>Pastores</h3>
+		<a href="{% url 'lista_filhos' l.pk %}"><b>{{l|upper}}</b></a>
+	{% endfor %}
+</body>
+</html>

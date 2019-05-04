@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% block title %}
+    Células
+{% endblock title %}
+{% block container %}
+ <div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-icon" data-background-color="rose">
+                <i class="material-icons">location_city</i>
+            </div>                              
+            <div class="card-content">
+                <div class="row">  
+                    <div class="col-md-12">
+                        <div class="col-md-3 text-right">
+                            <h4 class="card-title">Células Cadastradas</h4>
+                        </div>
+                        <div class="col-md-9 text-right">
+                            <a href="javascript: history.go(-1)"class="btn btn-primary btn-round btn-fab btn-fab-mini"id="id_button_back">
+                              <i class="material-icons">reply</i>
+                            </a>
+                            <a href="{% url 'adicionar_celula' %}"class="btn btn-info btn-round btn-fab btn-fab-mini card-title">
+                                <i class="material-icons">add</i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <form method="GET"name="search">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <input type="text"class="form-control" name="lider" placeholder="Nome do Líder">
+                        </div>
+                        <div class="col-md-3">
+                            <input type="text"class="form-control" name="celula" placeholder="Nome da Célula">
+                        </div>
+                        <div class="col-md-2">
+                            <input type="text"class="form-control" name="abertura" placeholder="Ano de Abertura">
+                        </div>
+                        <div class="col-md-3">
+                                <select class="selectpicker" name="perfil"data-style="select-with-transition" title="perfil" data-size="7">
+                                    <option value=""disabled selected>Todos</option>
+                                    <option value="HO">Homens</option>
+                                    <option value="MU">Mulheres</option>
+                                    <option value="JO">Jovens</option>
+                                    <option value="MO">Moças</option>
+                                </select>
+                            </div>
+                        <div class="col-md-1 col-sm-1">
+                            <button type="submit" class="btn btn-primary pull-right btn-round"><i class="material-icons">search</i></button>
+                        </div>
+                    </div>
+                </form>
+                <div class="material-datatables">
+                    <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th style="width:5%;">Nº</th>
+                                <th style="width:22%;">Líder</th>
+                                <th style="width:20%;">Nome da Célula</th>
+                                <th style="width:15%;">Trainee</th>
+                                <th style="width:10%;">Data/Abertura</th>
+                                <th class="text-center" style="width:11%;">Integrantes</th>
+                                <th style="width:5%;">Perfil</th>
+                                <th style="width:12%;" class="td-actions text-right">Ações</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th style="width:5%;">Nº</th>
+                                <th style="width:22%;">Líder</th>
+                                <th style="width:20%;">Nome da Célula</th>
+                                <th style="width:15%;">Trainee</th>
+                                <th style="width:10%;">Data/Abertura</th>
+                                <th class="text-center" style="width:11%;">Integrantes</th>
+                                <th style="width:5%;">Perfil</th>
+                                <th style="width:12%;" class="disabled-sorting text-right">Ações</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            {% for celula in celulas %}
+                                <tr>
+                                <td>{{forloop.counter}}</td>
+                                <td><a href="">{{celula.lider}}</a></td>
+                                <td>{{celula.nome}}</td>
+                                <td>{{celula.colider|truncatechars:18}}</td>
+                                <td>{{celula.criado_em|date:"d/m/Y" }}</td>
+                                <td class="text-center">{{celula.discipulo_set.count }}</td>
+                                <td>{{celula.get_celula_de_display }}</td>
+                                <td class="td-actions text-right">
+                                    <button type="button" rel="tooltip" class="btn btn-info btn-round">
+                                        <i class="material-icons">person</i>
+                                    </button>
+                                    <a href="{% url 'atualizar_celula' celula.id %}"type="button" rel="tooltip" class="btn btn-success btn-round">
+                                        <i class="material-icons">edit</i>
+                                    </a>
+                                    <a href ="{% url 'excluir_celula' celula.id %}" type="button" rel="tooltip" class="btn btn-danger btn-round">
+                                        <i class="material-icons">close</i>
+                                    </a>
+                                </td>
+                            </tr>                               
+                            {% endfor %}                       
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- end col-md-12 -->
+<script  type="text/javascript">
+    $("#remover").click(function(){
+        swal({
+            type: 'warning',  
+            title: 'Deseja Realmente deletar?',
+            text:'Você esta prestes a deletar esta Célula!',
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Sim, Deletar!",
+            }).then(function (result) {
+            swal({
+                type: 'success',
+                html: 'Deletado com sucesso'
+            })
+        })
+    });
+</script>
+{% endblock container %}

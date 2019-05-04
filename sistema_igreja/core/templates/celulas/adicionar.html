@@ -1,0 +1,97 @@
+{% extends "base.html" %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+{% block container %}
+<div class="col-md-12">
+    <div class="card">
+        <div class="card-header card-header-icon" data-background-color="rose">
+            <i class="material-icons"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">people</font></font></i>
+        </div>
+        <div class="card-content">
+            <h3 class="card-title text-center"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cadastrar Célula</font></font></h3>
+            <form method="POST">
+                {% csrf_token %}
+                <h3> <i class="material-icons"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">perm_identity</font></font></i> Dados</h3>
+                <div class="row">
+                    <div class="col-md-2">                     
+                        <div class="form-group">
+                            <label class="control-bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nome da Célula</font></font></label>
+                            {{form.nome}}
+                        <span class="material-input"></span>
+                      </div>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Lider</font></font></label>
+                        {{ form.lider.errors }}
+                        {{form.lider}}
+                        <span class="material-input"></span>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Colider</font></font></label>
+                        {{ form.colider.errors }}
+                        {{form.colider}}
+                        <span class="material-input"></span>
+                    </div>
+                    <div class="col-md-2">   
+                        <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Celula de</font></font></label>
+                        {{ form.celula_de.errors }}
+                        {{form.celula_de}}
+                    </div>
+                   <div class="col-md-2">
+                        <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Abertura</font></font></label>
+                        {{form.criado_em.errors }}
+                        {{form.criado_em}}
+                        <span class="material-input"></span>
+                    </div>
+                     <div class="col-md-2">
+                        <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Dia de Reunião</font></font></label>
+                        {{form.dia_reuniao.errors }}
+                        {{form.dia_reuniao}}
+                        <span class="material-input"></span>
+                    </div>
+                </div>
+                <h3> <i class="material-icons"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">map</font></font></i> Endereço</h3>
+                <div class="row">
+                   
+                    <div class="col-md-3">
+                        <div class="form-group label-floating is-empty">
+                            <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Rua</font></font></label>
+                            <input type="text" class="form-control">
+                            <span class="material-input"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group label-floating is-empty">
+                            <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nª</font></font></label>
+                            <input type="text" class="form-control">
+                            <span class="material-input"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group label-floating is-empty">
+                            <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Bairro</font></font></label>
+                            <input type="text" class="form-control">
+                            <span class="material-input"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-group label-floating is-empty">
+                            <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cidade</font></font></label>
+                            <input type="text" class="form-control">
+                            <span class="material-input"></span>
+                        </div>
+                    </div>
+                     <div class="col-md-2">
+                        <div class="form-group ">
+                            <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Estado</font></font></label>
+                            {{form.uf}}
+                            <span class="material-input"></span>
+                        </div>
+                    </div>
+                </div>  
+                <button type="submit" class="btn btn-round btn-rose  pull-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cadastrar</font></font></button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock container %}

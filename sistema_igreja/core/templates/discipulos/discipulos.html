@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+  Discipulos
+{% endblock title %}
+{% block container %}
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header card-header-icon" data-background-color="blue">
+        <i class="material-icons">supervisor_account</i>
+      </div>                              
+      <div class="card-content">
+        <div class="row">  
+          <div class="col-md-12">
+            <div class="col-md-3 text-right">
+              <h4 class="card-title">Discípilos Cadastrados</h4>
+            </div>
+            <div class="col-md-9 text-right">
+             <a href="javascript: history.go(-1)"class="btn btn-primary btn-round btn-fab btn-fab-mini"id="id_button_back">
+              <i class="material-icons">reply</i>
+            </a>
+            <a href="{% url 'adicionar_discipulo' %}"class="btn btn-info btn-round btn-fab btn-fab-mini card-title">
+              <i class="material-icons">add</i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <form method="GET"name="search">
+        <div class="row">
+          <div class="col-md-3 col-sm-3">
+            <div class="form-group">
+              <input name="date_ranger"class="form-control"required>
+            </div>
+          </div>
+
+          <!--se quem estiver logado não for profissional ele mostra o select -->
+          <div class="col-md-3 col-sm-3">
+            <input type="text"class="form-control" name="lider" placeholder="Nome do Líder">
+          </div>
+
+          <div class="col-md-2">
+            <select class="selectpicker" name="sexo"data-style="select-with-transition" title="sexo" data-size="7">
+              <option value=""disabled selected>Sexo (Todos)</option>
+              <option value="M">Masculino</option>
+              <option value="F">Feminino</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <select class="selectpicker" name="perfil"data-style="select-with-transition" title="perfil" data-size="7">
+              <option value=""disabled selected>Perfil (Todos)</option>
+              <option value="HO">Homens</option>
+              <option value="MU">Mulheres</option>
+              <option value="JO">Jovens</option>
+              <option value="MO">Moças</option>
+            </select>
+          </div>
+        </div>   
+        <div class="row">
+          <div class="col-md-3">
+            <select class="selectpicker" name="escolaridade"data-style="select-with-transition" title="escolaridade" data-size="7">
+              <option value=""disabled selected>Escolaridade (Todos)</option>
+              <option value="NA">Não Alfabetizado</option>
+              <option value="EFI">Ensino Fundamental Incompleto</option>
+              <option value="EF">Ensino Fundamental</option>
+              <option value="EMI">Ensino Médio Incompleto</option>
+              <option value="EM">Ensino Médio</option>
+              <option value="SI">Superior Incompleto</option>
+              <option value="S">Superior</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <select class="selectpicker" name="ministerio"data-style="select-with-transition" title="ministerio" data-size="7">
+              <option value=""disabled selected>S. Ministerial (Todos)</option>
+              <option value="CN">Novo Convertido</option>
+              <option value="N1">Cursando N1</option>
+              <option value="N2">Cursando N2</option>
+              <option value="N3">Cursando N3</option>
+              <option value="CT">Cursando Trainee</option>
+              <option value="TF">Trainee Formado</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <select class="selectpicker" name="estuda"data-style="select-with-transition" title="estuda" data-size="7">
+              <option value=""disabled selected>Estuda (Todos)</option>
+              <option value="HO">Sim</option>
+              <option value="MU">Não</option>
+            </select>
+          </div>                                                                                        
+          <div class="col-md-1 col-sm-1">
+            <button type="submit" class="btn btn-primary pull-right btn-round"><i class="material-icons">search</i></button>
+          </div>
+        </div>
+      </form>
+      <div class="material-datatables">
+        <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+          <thead>
+            <tr>
+              <th style="width:5%;">Nº</th>
+              <th style="width:20%;">Nome</th>
+              <th style="width:22%;">Líder</th>
+              <th style="width:13%;">S. Ministerial</th>
+              <th style="width:12%;">Telefone</th>
+              <th style="width:18%;">Escolaridade</th>
+              <th style="width:10%;" class="td-actions text-right">Ações</th>
+            </tr>
+          </thead>
+          <tfoot>
+            <tr>
+              <th style="width:5%;">Nº</th>
+              <th style="width:20%;">Nome</th>
+              <th style="width:22%;">Líder</th>
+              <th style="width:13%;">S. Ministerial</th>
+              <th style="width:12%;">Telefone</th>
+              <th style="width:18%;">Escolaridade</th>
+              <th style="width:10%;" class="td-actions text-right">Ações</th>
+            </tr>
+          </tfoot>
+          <tbody>
+            {% for d in discipulos  %}
+            <tr>
+              <td>{{forloop.counter}}</td>
+              <td>{{d.nome|title}}</td>
+              <td>{{d.lider}}</td>
+              <td>{{d.get_tipo_display}}</td>
+              <td>{{d.telefone}}</td>
+              <td>{{d.get_escolaridade_display}}</td>
+              <td class="td-actions text-right">
+                <a  href="{% url 'discipulo_detalhe' d.slug %}"type="button" rel="tooltip" class="btn btn-info btn-round"title="Ver Detalhes">
+                  <i class="material-icons">person</i>
+                </a>
+                <a  href="{% url 'discipulo_update' d.slug %}"type="button" rel="tooltip" class="btn btn-success btn-round"title="Atualizar Dados">
+                  <i class="material-icons">edit</i>
+                </a>
+                <a href="{% url 'discipulo_delete' d.slug %}" rel="tooltip" class="btn btn-danger btn-round"title="Excluir..">
+                  <i class="material-icons">close</i>
+                </a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+</div> <!-- end col-md-12 -->
+<script type="text/javascript">
+$("#remover").click(function(){
+  swal({
+    type: 'warning',  
+    title: 'Deseja Realmente deletar?',
+    text: 'Conte-nos por que esta pessoa esta saíndo',
+    input: 'select',
+    inputOptions: {
+      'R1': 'Discípulo não compareceu às consolidações',
+      'R2': 'Discípulo Viajou',
+      'R3': 'Enviado como Líder',
+      'R4': 'Falecimento',
+      'R5': 'Incompatibilidade com o estilo de Igreja',
+      'R6': 'Lider não cuidou'
+    },
+    inputPlaceholder: 'Selecione uma Resposta',
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    cancelButtonText: "Cancelar",
+    confirmButtonText: "Sim, Deletar!",
+    inputValidator: function (value) {
+      return new Promise(function (resolve, reject) {
+        if (value != '') {
+          resolve()
+        } else {
+          reject('Selecione uma Resposta :)')
+        }
+      })
+    }
+  }).then(function (result) {
+    swal({
+      type: 'success',
+      html: 'Deletado com sucesso'
+    })
+  })
+});        
+</script>
+{% endblock container %}
