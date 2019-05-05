@@ -133,7 +133,6 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
 LOGOUT_REDIRECT_URL = 'login'
 LOGIN_REDIRECT_URL = 'login_success'
 LOGIN_URL           = 'login'
@@ -149,3 +148,7 @@ EMAIL_PORT          = config('EMAIL_PORT', default=25, cast=int)
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 EMAIL_HOST_USER     = config('EMAIL_HOST_USER', default='')
 EMAIL_USE_TLS       = config('EMAIL_USE_TLS', default=False, cast=bool)
+
+
+STATIC_ROOT = 'staticfiles'
+STATIC_URL = '/static/'
