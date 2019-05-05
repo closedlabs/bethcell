@@ -17,6 +17,7 @@ class DashboardMixin(object):
             context['celulas_count']     = Celula.objects.filter(lider__lider_de_rede=lider).count()
             context['discipulos_count']  = Discipulo.objects.filter(lider__lider_de_rede=lider).count()
         return context
+    
     #retorna os aniversariantes do dia..
     def aniversarios(self):
         today     = timezone.now().date()
