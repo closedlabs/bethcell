@@ -23,9 +23,10 @@ class Dashboard(TemplateView):
         return context
 
 
-class GerirCelulas(TemplateView,DashboardMixin):
+class GerirCelulas(DashboardMixin,TemplateView):
     template_name = "home/gestao_celular.html"
-    
+   
+
 class AniversariantesView(TemplateView):
     template_name = "aniversariantes/aniversarios.html"
 
@@ -120,9 +121,8 @@ def discipulos(request):
     if request.user.is_superuser:
         discipulos = Discipulo.objects.all()
     else:
-        usuario = request.user.pk
-        lider = Lider.objects.get(user=usuario,tipo='LG')
-        print('lider de rede:',lider)
+        usuario    = request.user.pk
+        lider      = Lider.objects.get(user=usuario,tipo='LG')
         discipulos = Discipulo.objects.filter(lider__lider_de_rede=lider)
     context = {
         'discipulos':discipulos
@@ -159,8 +159,7 @@ def celulas(request):
         celulas = Celula.objects.all()
     else:
         usuario = request.user.pk
-        lider = Lider.objects.get(user=usuario,tipo='LG')
-        print('lider de rede:',lider)
+        lider   = Lider.objects.get(user=usuario,tipo='LG')
         celulas = Celula.objects.filter(lider__lider_de_rede=lider)
     context = {
         'celulas':celulas

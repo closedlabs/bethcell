@@ -6,6 +6,7 @@ from django.dispatch import receiver
 from core.utils import unique_slug_generator
 from django.urls import reverse
 from django.db.models import Count
+
 class Celula(models.Model):
     nome        = models.CharField(verbose_name='Nome do Grupo', max_length=35, blank=True)
     lider       = models.OneToOneField('Lider',on_delete=models.CASCADE)
@@ -95,7 +96,7 @@ def update_user_profile(sender, instance, created, **kwargs):
     if created:
         Lider.objects.create(
             user=instance,
-            nome=instance.first_name +' '+ instance.last_name,
+            #nome=instance.first_name +' '+ instance.last_name,
     )
     instance.user.save()
 
