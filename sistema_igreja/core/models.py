@@ -7,6 +7,9 @@ from core.utils import unique_slug_generator
 from django.urls import reverse
 from django.db.models import Count
 
+class Igreja(models.Model):
+    nome = models.CharField(max_length=70, blank=True)
+    
 class Celula(models.Model):
     nome        = models.CharField(verbose_name='Nome do Grupo', max_length=35, blank=True)
     lider       = models.OneToOneField('Lider',on_delete=models.CASCADE)
