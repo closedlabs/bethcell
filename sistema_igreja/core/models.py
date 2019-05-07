@@ -96,7 +96,7 @@ def update_user_profile(sender, instance, created, **kwargs):
     if created:
         Lider.objects.create(
             user=instance,
-            #nome=instance.first_name +' '+ instance.last_name,
+            nome=instance.first_name +' '+ instance.last_name,
     )
     instance.user.save()
 

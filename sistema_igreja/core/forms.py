@@ -44,7 +44,7 @@ class LiderForm(forms.ModelForm):
 
 class SignUpForm(UserCreationForm):
     tipo_lider =  forms.CharField(widget=forms.Select(choices=LIDER_CHOICES,attrs={'class':'selectpicker','data-style':'select-with-transition','data-size':7}))
-    lider      =  forms.ModelChoiceField(queryset=Lider.objects.all(),widget=forms.Select(
+    lider      =  forms.ModelChoiceField(required = False,queryset=Lider.objects.all(),widget=forms.Select(
         attrs={'class':'selectpicker','data-style':'select-with-transition','data-size':7,'data-live-search':'true'}))
     sexo       =  forms.ChoiceField(choices=SEXO_CHOICES,widget=forms.Select(
         attrs={'class':'selectpicker','data-style':'select-with-transition','data-size':7}))
