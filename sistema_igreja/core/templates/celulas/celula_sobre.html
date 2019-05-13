@@ -1,0 +1,199 @@
+{% extends "base.html" %}
+{% block title %}
+    Sobre a Célula
+{% endblock title %}
+{% block container %}
+<div class="col-md-6 text-center">
+    <div class="card">
+        <div class="card-header card-header-icons card-header-primary">
+            <h3 class="card-title">Informações da Célula</h3>
+            <p class="card-category">{{object.nome|title}}</p>
+          </div>                              
+        <div class="card-content">
+            <div class="material-datatables">
+                <table id="lideres" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                        <tbody>                                                    
+                            <tr>
+                                <th class="col-md-3"> 
+                                    <a href="#" type="button" class="btn btn-info btn-round"><i class="fa fa-plus" aria-hidden="true"></i> REUNIÕES<div class="ripple-container"></div>                                           
+                                </th>
+                                <td> 
+                                    <a href="#" type="button" class="btn btn-success btn-round">CELULOGRAMAS<div class="ripple-container"></div></a>
+                                </td>
+                            </tr>
+                        
+                        <tr>
+                            <th class="col-md-3 text-right">Lider De Célula <i class="fa fa-user" aria-hidden="true"></i></th>
+                            <td>{{object.lider}}</td>
+                        </tr>
+                        
+                        <tr>
+                            <th class="col-md-3 text-right">Trainee <i class="fa fa-user-o" aria-hidden="true"></i></th>
+                            <td>{{object.colider}}</td>
+                        </tr>
+                        
+                        <tr>
+                            <th class="col-md-3 text-right">Endereço <i class="fa fa-map-marker" aria-hidden="true"></i></th>
+                            <td>{{object.rua}} Nº {{object.numero}} {{object.bairro}}</td>
+                        </tr>
+                        
+                        <tr>
+                            <th class="col-md-3 text-right">Data de Arbertura <i class="fa fa-calendar" aria-hidden="true"></i></th>
+                            <td>{{object.criado_em|date:"d/m/Y"}}</td>
+                        </tr>
+                        
+                        <tr>
+                            <th class="col-md-3 text-right">Contato <i class="fa fa-phone" aria-hidden="true"></i></th>
+                            <td>{{object.lider.telefone}}</td>
+                        </tr>
+                                            
+                        <tr>
+                            <th class="col-md-3 text-right">Perfil <i class="fa fa-user" aria-hidden="true"></i></th>
+                            <td>{{object.get_celula_de_display}}</td>
+                        </tr>
+                        
+                        
+                        <tr>
+                            <th class="col-md-3 text-right">Dia da Reunião <i class="fa fa-pencil" aria-hidden="true"></i></th>
+                            <td>{{object.get_dia_reuniao_display}}</td>
+                        </tr>
+                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">   
+    <div class="col-lg-2 col-md-2 col-sm-2">
+        <div class="card card-stats">
+                <div class="card-header card-header-icon" data-background-color="red">
+                        <i class="material-icons">done_all</i>
+                    </div>
+            <div class="card-content">
+                <p class="category">N1</p>
+                <h3 class="card-title">{{nivel_1}}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-2">
+        <div class="card card-stats">
+                <div class="card-header card-header-icon" data-background-color="blue">
+                        <i class="material-icons">done_all</i>
+                    </div>
+            <div class="card-content">
+                <p class="category">N2</p>
+                <h3 class="card-title">{{nivel_2}}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-2">
+        <div class="card card-stats">
+                <div class="card-header card-header-icon" data-background-color="green">
+                        <i class="material-icons">done_all</i>
+                    </div>
+            <div class="card-content">
+                <p class="category">N3</p>
+                <h3 class="card-title">{{nivel_3}}</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="card card-stats">
+                <div class="card-header card-header-icon" data-background-color="grey">
+                        <i class="material-icons">done_all</i>
+                    </div>
+            <div class="card-content">
+                <p class="category">Trainne</p>
+                <h3 class="card-title">{{trainee}}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3">
+        <div class="card card-stats">
+                <div class="card-header card-header-icon" data-background-color="red">
+                        <i class="material-icons">done_all</i>
+                    </div>
+            <div class="card-content">
+                <p class="category">Trainee Formado</p>
+                <h3 class="card-title">{{trainee_formado}}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+    <div class="alert alert-info alert-with-icon" data-notify="container">
+        <i class="material-icons" data-notify="icon">notifications</i>
+        <button type="button" aria-hidden="true" class="close">
+            <i class="material-icons">close</i>
+        </button>
+        <span data-notify="message">Click no nome do discipulo e confira o histórico de presença nas reuniõres de célula.</span>
+    </div>
+</div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-icon" data-background-color="blue">
+                <i class="material-icons">supervisor_account</i>
+            </div>                              
+            <div class="card-content">
+                <div class="row">  
+                    <div class="col-md-12">
+                        <div class="col-md-3 text-right">
+                            <h4 class="card-title">Lista de Membros</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="material-datatables">
+                    <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th style="width:5%;">Nº</th>
+                                <th style="width:20%;">Nome</th>
+                                <th style="width:22%;">Líder</th>
+                                <th style="width:13%;">S. Ministerial</th>
+                                <th style="width:12%;">Telefone</th>
+                                <th style="width:18%;">Escolaridade</th>
+                                <th style="width:10%;" class="td-actions text-right">Ações</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th style="width:5%;">Nº</th>
+                                <th style="width:20%;">Nome</th>
+                                <th style="width:22%;">Líder</th>
+                                <th style="width:13%;">S. Ministerial</th>
+                                <th style="width:12%;">Telefone</th>
+                                <th style="width:18%;">Escolaridade</th>
+                                <th style="width:10%;" class="disabled-sorting text-right">Ações</th>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+
+                            {% for membro in celula.discipulo_set.all %}                                          
+                            <tr>
+                                <td>{{membro.id}}</td>
+                                <td><a href="frequencia_cel.html">{{membro.nome|title}}</a></td>
+                                <td>{{membro.lider}}</td>
+                                <td>{{membro.get_tipo_display}}</td>
+                                <td>{{membro.telefone}}</td>
+                                <td>{{membro.escolaridade}}</td>
+                                <td class="td-actions text-right">
+                                    <a href="{% url 'discipulo_update' membro.slug %}" rel="tooltip" class="btn btn-success btn-round">
+                                        <i class="material-icons">edit</i>
+                                    </a>
+                                    <a href="{% url 'discipulo_delete' membro.slug %}" rel="tooltip" class="btn btn-danger btn-round">
+                                        <i class="material-icons">close</i>
+                                    </a>
+                                </td>
+                            </tr>
+                            {% endfor %}                             
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- end col-md-12 -->
+{% endblock container %}

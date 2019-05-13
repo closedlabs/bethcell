@@ -188,6 +188,21 @@ class CelulaUpdateView(SuccessMessageMixin,UpdateView):
     success_url     = '/celulas'
     success_message = "Célula Atualizada com Sucesso!"
 
+class CelulaDetailView(SuccessMessageMixin,DetailView):
+    model           = Celula
+    template_name   = "celulas/celula_sobre.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(CelulaDetailView, self).get_context_data(**kwargs)
+        #celula = Celula.get_object_or_404(Celula,pk=pk)
+        context['nivel_0']  = Discipulo.objects.filter(celula=self.object,tipo='N0').count()
+        context['nivel_1']  = Discipulo.objects.filter(celula=self.object,tipo='N1').count()
+        context['nivel_2']  = Discipulo.objects.filter(celula=self.object,tipo='N2').count()
+        context['nivel_3']  = Discipulo.objects.filter(celula=self.object,tipo='N3').count()
+        context['trainee']  = Discipulo.objects.filter(celula=self.object,tipo='N4').count()
+        context['trainee_formado']  = Discipulo.objects.filter(celula=self.object,tipo='N5').count()
+        return context
+
 class CelulaDeleteView(DeleteView):
     model         = Celula
     template_name = "celulas/delete_celula.html"

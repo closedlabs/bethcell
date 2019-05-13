@@ -4,7 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from core.forms import SignUpForm,LiderForm
 from django.views.generic import UpdateView
-from core.models import Lider
+from core.models import Lider,Celula
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 
@@ -33,26 +33,18 @@ def add_usuario(request):
 
 #redireciona dependendo do tipo de usuario
 def login_success(request):
-    #if request.user.is_superuser:
+    if request.user.is_superuser:
         # user is an admin redirect to dashboard
     #messages.success(request,"Bem Vindo ao Sistema!!")
-    return redirect('dashboard')
-    """
+        return redirect('dashboard')
     else:
         usuario = request.user.pk
-        atendente = Profissional.objects.filter(user=usuario,tipo=1)
-        #print(atendente)
-        p = Profissional.objects.filter(user=usuario,tipo=2)
-        #print(p)
-        if p:
-            # user is an Profissional redirect to agendamentos
-            messages.success(request,"Bem Vindo ao Sistema!!")
-            return redirect('agendamentos')
-        else:
-            # user is an atendente redirect to Home
-            messages.success(request,"Bem Vindo ao Sistema!!")
-            return redirect('home')
-    """
+        lider   = Lider.objects.filter(user=usuario)
+        celula  = Celula.objects.filter(lider__in=lider)
+        if celula.exists():
+            return redirect('/celula/sobre/'+str(int(celula[0].id)))
+        
+
 """
 def update_usuario(request,pk):
     lider = Lider.objects.get(pk=pk)

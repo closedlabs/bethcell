@@ -87,9 +87,9 @@
                                 <td class="text-center">{{celula.discipulo_set.count }}</td>
                                 <td>{{celula.get_celula_de_display }}</td>
                                 <td class="td-actions text-right">
-                                    <button type="button" rel="tooltip" class="btn btn-info btn-round">
+                                    <a href="{% url 'celula_sobre' celula.id %}" rel="tooltip" class="btn btn-info btn-round">
                                         <i class="material-icons">person</i>
-                                    </button>
+                                    </a>
                                     <a href="{% url 'atualizar_celula' celula.id %}"type="button" rel="tooltip" class="btn btn-success btn-round">
                                         <i class="material-icons">edit</i>
                                     </a>

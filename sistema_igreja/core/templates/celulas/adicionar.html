@@ -56,28 +56,31 @@
                     <div class="col-md-3">
                         <div class="form-group label-floating is-empty">
                             <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Rua</font></font></label>
-                            <input type="text" class="form-control">
+                            {{form.rua.errors }}
+                            {{form.rua}}
                             <span class="material-input"></span>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group label-floating is-empty">
                             <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nª</font></font></label>
-                            <input type="text" class="form-control">
+                             {{form.numero.errors }}
+                            {{form.numero}}
                             <span class="material-input"></span>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group label-floating is-empty">
                             <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Bairro</font></font></label>
-                            <input type="text" class="form-control">
-                            <span class="material-input"></span>
+                            {{form.bairro.errors }}
+                            {{form.bairro}}
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group label-floating is-empty">
                             <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cidade</font></font></label>
-                            <input type="text" class="form-control">
+                             {{form.cidade.errors }}
+                            {{form.cidade}}
                             <span class="material-input"></span>
                         </div>
                     </div>

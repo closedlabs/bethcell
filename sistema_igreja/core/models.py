@@ -83,7 +83,8 @@ class Lider(Membro):
     blank=True,null=True, related_name="liderado")
 
     def __str__(self):
-        return str(self.user) 
+        return str(self.user.first_name).upper() + ' ' + str(self.user.last_name).upper()
+
 
     #def get_absolute_url(self):
         #return reverse('products:detail',kwargs={'slug':self.slug})

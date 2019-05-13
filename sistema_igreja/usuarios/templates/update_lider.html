@@ -46,21 +46,24 @@
                     <div class="col-md-4">
                         <div class="form-group label-floating is-empty">
                             <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">E-mail</font></font></label>
-                            <input type="text" class="form-control">
+                            {{ form.email.errors }}
+                            {{form.email}}
                             <span class="material-input"></span>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group label-floating is-empty">
                             <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cel/Whatsapp</font></font></label>
-                            <input type="text" class="form-control">
+                            {{form.telefone.errors }}
+                            {{form.telefone}}
                             <span class="material-input"></span>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group label-floating is-empty">
                             <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Facebook</font></font></label>
-                            <input type="text" class="form-control">
+                            {{form.facebook.errors }}
+                            {{form.facebook}}
                             <span class="material-input"></span>
                         </div>
                     </div>
@@ -121,35 +124,40 @@
                     <div class="col-md-2">
                         <div class="form-group label-floating is-empty">
                             <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cep</font></font></label>
-                            <input type="text" class="form-control">
+                            {{form.cep.errors }}
+                            {{form.cep}}
                             <span class="material-input"></span>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="form-group label-floating is-empty">
                             <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Rua</font></font></label>
-                            <input type="text" class="form-control">
+                            {{ form.rua.errors }}
+                            {{form.rua}}
                             <span class="material-input"></span>
                         </div>
                     </div>
                     <div class="col-md-1">
                         <div class="form-group label-floating is-empty">
                             <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nª</font></font></label>
-                            <input type="text" class="form-control">
+                            {{ form.numero.errors }}
+                            {{form.numero}}
                             <span class="material-input"></span>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group label-floating is-empty">
                             <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Bairro</font></font></label>
-                            <input type="text" class="form-control">
+                            {{ form.bairro.errors }}
+                            {{form.bairro}}
                             <span class="material-input"></span>
                         </div>
                     </div>
                     <div class="col-md-2">
                         <div class="form-group label-floating is-empty">
                             <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Cidade</font></font></label>
-                            <input type="text" class="form-control">
+                            {{ form.cidade.errors }}
+                            {{form.cidade}}
                             <span class="material-input"></span>
                         </div>
                     </div>

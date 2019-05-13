@@ -36,6 +36,12 @@ class LiderForm(forms.ModelForm):
             'data_batismo':forms.TextInput(attrs={'class':'form-control datetimepicker'}),
             'data_encontro':forms.TextInput(attrs={'class':'form-control datetimepicker'}),
             'telefone':forms.TextInput(attrs={'class':'form-control'}),
+            'cep':forms.TextInput(attrs={'class':'form-control'}),
+            'rua':forms.TextInput(attrs={'class':'form-control'}),
+            'bairro':forms.TextInput(attrs={'class':'form-control'}),
+            'cidade':forms.TextInput(attrs={'class':'form-control'}),
+            'numero':forms.TextInput(attrs={'class':'form-control'}),
+            'facebook':forms.TextInput(attrs={'class':'form-control'}),
             'uf': forms.Select(attrs={'class':'selectpicker',
                 'data-style':'select-with-transition','data-size':7,'data-live-search':'true'}),
             'profissao': forms.TextInput(attrs={'class': 'form-control'}),
@@ -108,5 +114,9 @@ class CelulaForm(forms.ModelForm):
             'dia_reuniao':forms.Select(attrs={'class':'selectpicker','data-style':'select-with-transition','data-size':7}),
             'uf': forms.Select(attrs={'class':'selectpicker',
                 'data-style':'select-with-transition','data-size':7,'data-live-search':'true'}),
+            'rua': forms.TextInput(attrs={'class': 'form-control'}),
+            'cidade': forms.TextInput(attrs={'class': 'form-control'}),
+            'numero': forms.TextInput(attrs={'class': 'form-control'}),
+            'bairro': forms.TextInput(attrs={'class': 'form-control'}),
 
         }

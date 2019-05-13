@@ -24,6 +24,7 @@ urlpatterns = [
 	path('celulas/', views.celulas, name='celulas'),
     path('adicionar/celula/',views.CelulaCreateView.as_view(),name='adicionar_celula'),
     path('adicionar/<int:pk>/celula/',views.CelulaUpdateView.as_view(),name='atualizar_celula'),
+    path('celula/sobre/<int:pk>/',views.CelulaDetailView.as_view(),name='celula_sobre'),
     path('celula/<int:pk>/excluir/',views.CelulaDeleteView.as_view(),name='excluir_celula'),
 
     ############EVASAO############################################
