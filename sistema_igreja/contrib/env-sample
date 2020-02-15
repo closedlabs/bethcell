@@ -1,0 +1,25 @@
+# Se for um ambiente de produção setar sempre False
+# https://docs.djangoproject.com/en/1.11/ref/settings/#debug
+
+DEBUG=True
+
+# Coloque aqui uma secret key segura
+# https://docs.djangoproject.com/en/1.11/ref/settings/#secret-key
+
+SECRET_KEY=change-me
+
+#Email settings
+EMAIL_HOST=smtp.sendgrid.net
+EMAIL_HOST_USER=
+EMAIL_HOST_PASSWORD=
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
+
+ALLOWED_HOSTS=*
+
+#configuracoes do banco_de_dados para mysql
+DATABASE_NAME=laudos_db
+DATABASE_USER=root
+DATABASE_PASSWORD=
+DATABASE_HOST=
+DATABASE_PORT=
