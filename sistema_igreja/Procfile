@@ -1,0 +1,1 @@
+web: gunicorn bethcell.wsgi --log-file -

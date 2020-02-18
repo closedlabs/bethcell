@@ -28,21 +28,47 @@ DEBUG = config('DEBUG',default=False,cast=bool)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
-
 # Application definition
 
-INSTALLED_APPS = [
+SHARED_APPS = [
+    'django_tenants', # Mandatory
+    'django.contrib.contenttypes',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'igrejas.apps.IgrejasConfig', # app de inquilinos
+]
+
+TENANT_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
     'usuarios.apps.UsuariosConfig'
 ]
 
+INSTALLED_APPS = list(set(SHARED_APPS + TENANT_APPS))
+
+# INSTALLED_APPS = [
+#     'django.contrib.admin',
+#     'django.contrib.auth',
+#     'django.contrib.contenttypes',
+#     'django.contrib.sessions',
+#     'django.contrib.messages',
+#     'django.contrib.staticfiles',  
+# ]
+
+# URLS AND ROUTING
+ROOT_URLCONF = 'bethcell.urls'
+PUBLIC_SCHEMA_URLCONF = 'bethcell.public_urls'
+
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',#para arquivos estaticos no servidor
+    'django_tenants.middleware.main.TenantMainMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -52,7 +78,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'bethcell.urls'
 
 TEMPLATES = [
     {
@@ -78,7 +103,7 @@ WSGI_APPLICATION = 'bethcell.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE':'django.db.backends.mysql',
+        'ENGINE':'django_tenants.postgresql_backend',
         'NAME':config('DATABASE_NAME'),
         'USER':config('DATABASE_USER'),
         'PASSWORD':config('DATABASE_PASSWORD'),
@@ -87,16 +112,14 @@ DATABASES = {
     }
 }
 
-"""
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-"""
+DATABASE_ROUTERS = [
+    'django_tenants.routers.TenantSyncRouter',
+]
 
+TENANT_MODEL = 'igrejas.Igreja' # app.Model
+TENANT_DOMAIN_MODEL = 'igrejas.Domain'  # app.Model
 
+PUBLIC_SCHEMA_NAME = 'public'
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
 
@@ -115,7 +138,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+#whitenoise
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -134,7 +158,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 LOGOUT_REDIRECT_URL = 'login'
-LOGIN_REDIRECT_URL = 'login_success'
+LOGIN_REDIRECT_URL  = 'login_success'
 LOGIN_URL           = 'login'
 
 

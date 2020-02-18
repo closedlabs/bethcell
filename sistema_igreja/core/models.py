@@ -7,11 +7,9 @@ from core.utils import unique_slug_generator
 from django.urls import reverse
 from django.db.models import Count
 
-class Igreja(models.Model):
-    nome = models.CharField(max_length=70, blank=True)
     
 class Celula(models.Model):
-    nome        = models.CharField(verbose_name='Nome do Grupo', max_length=35, blank=True)
+    nome        = models.CharField(verbose_name='Nome do Grupo', max_length=50, blank=True)
     lider       = models.OneToOneField('Lider',on_delete=models.CASCADE)
     colider     = models.CharField(verbose_name='Trainee', max_length=35)
     celula_de   = models.CharField(verbose_name='Célula de', max_length=1, choices=CELULA_CHOICES)
@@ -34,7 +32,7 @@ class Celula(models.Model):
         
 class Membro(models.Model):
     #dados pessoais
-    nome           = models.CharField(verbose_name='Nome*',null=True ,max_length=40, unique=True)
+    nome           = models.CharField(verbose_name='Nome*',null=True ,max_length=100, unique=True)
     slug           = models.SlugField(blank=True,unique=True)
     sexo           = models.CharField(verbose_name='Sexo*', max_length=1, choices=SEXO_CHOICES,null=True)
     nascimento     = models.DateField(verbose_name='Data de nascimento*',blank=True,null=True)
