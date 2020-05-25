@@ -79,3 +79,9 @@ class Discipulo(Membro):
 
     def __str__(self):
         return self.nome
+
+#gera um slug randomico
+def leader_pre_save_receiver(sender,instance,*args,**kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+pre_save.connect(leader_pre_save_receiver,sender=Discipulo)

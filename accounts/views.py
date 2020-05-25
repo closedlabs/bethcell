@@ -2,12 +2,14 @@ from django.shortcuts import render
 
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-
 from django.views.generic import UpdateView,CreateView
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .forms import CustomUserCreationForm
+from members.models import Lider
+from core.models import Celula
+
 '''
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 +                           Views de Usuarios
@@ -27,6 +29,10 @@ def login_success(request):
         celula  = Celula.objects.filter(lider__in=lider)
         if celula.exists():
             return redirect('/celula/sobre/'+str(int(celula[0].id)))
+        else:
+            return redirect('dashboard')
+
+
         
 
 class SignUpView(CreateView):
