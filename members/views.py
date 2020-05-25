@@ -92,27 +92,6 @@ def lider_delete(request,pk):
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 '''
 
-class DiscipuloCreateView(SuccessMessageMixin,CreateView):
-    model           = Discipulo
-    form_class      = DiscipuloForm
-    template_name   = "discipulos/adicionar.html"
-    success_url     = '/discipulos'
-    success_message = 'Discipulo Cadastrado Com Sucesso!!!!'
-
-
-class DiscipuloUpdateView(SuccessMessageMixin,UpdateView):
-    model           = Discipulo
-    form_class      = DiscipuloForm
-    template_name   = "discipulos/adicionar.html"
-    success_url     = '/discipulos'
-    success_message = 'Dados Atualizados Com Sucesso!!!!'
-
-
-class DiscipuloDetailView(DetailView):
-    model = Discipulo
-    template_name = "discipulos/detalhes.html"
-
-
 def discipulos(request):
     if request.user.is_superuser:
         discipulos = Discipulo.objects.all()
@@ -123,9 +102,30 @@ def discipulos(request):
     context = {
         'discipulos':discipulos
     }
-    return render(request,'discipulos/discipulos.html',context)
+    return render(request,'disciples/disciples.html',context)
 
-  
+
+class DiscipuloCreateView(SuccessMessageMixin,CreateView):
+    model           = Discipulo
+    form_class      = DiscipuloForm
+    template_name   = "disciples/add.html"
+    success_url     = '/discipulos'
+    success_message = 'Discipulo Cadastrado Com Sucesso!!!!'
+
+
+class DiscipuloUpdateView(SuccessMessageMixin,UpdateView):
+    model           = Discipulo
+    form_class      = DiscipuloForm
+    template_name   = "disciples/add.html"
+    success_url     = '/discipulos'
+    success_message = 'Dados Atualizados Com Sucesso!!!!'
+
+
+class DiscipuloDetailView(DetailView):
+    model = Discipulo
+    template_name = "disciples/detail.html"
+
+
 def discipulo_delete(request,slug):
     discipulo = get_object_or_404(Discipulo,slug=slug)   
     form = DiscipuloForm(request.POST or None,instance=discipulo)
@@ -134,5 +134,5 @@ def discipulo_delete(request,slug):
         discipulo.save()
         discipulo.delete()
         return redirect('discipulos')
-    return render(request,'discipulos/delete_confirm.html',{'form':form})
+    return render(request,'disciples/delete.html',{'form':form})
     

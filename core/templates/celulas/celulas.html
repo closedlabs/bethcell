@@ -80,12 +80,12 @@
                             {% for celula in celulas %}
                                 <tr>
                                 <td>{{forloop.counter}}</td>
-                                <td><a href="">{{celula.lider}}</a></td>
-                                <td>{{celula.nome}}</td>
-                                <td>{{celula.colider|truncatechars:18}}</td>
+                                <td><a href="">{{celula.leader}}</a></td>
+                                <td>{{celula.name}}</td>
+                                <td>{{celula.coleader|truncatechars:18}}</td>
                                 <td>{{celula.criado_em|date:"d/m/Y" }}</td>
                                 <td class="text-center">{{celula.discipulo_set.count }}</td>
-                                <td>{{celula.get_celula_de_display }}</td>
+                                <td>{{celula.get_cell_type_display }}</td>
                                 <td class="td-actions text-right">
                                     <a href="{% url 'celula_sobre' celula.id %}" rel="tooltip" class="btn btn-info btn-round">
                                         <i class="material-icons">person</i>

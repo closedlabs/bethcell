@@ -8,25 +8,25 @@ from core.choices import SEXO_CHOICES,CATEGORIA_CHOICES,ESCOLARIDADE,UF,DIAS,CEL
 
 
 class Celula(models.Model):
-    nome        = models.CharField(verbose_name='Nome do Grupo', max_length=100, blank=True)
-    lider       = models.OneToOneField('members.Lider',on_delete=models.CASCADE)
-    colider     = models.CharField(verbose_name='Trainee', max_length=35)
-    celula_de   = models.CharField(verbose_name='Célula de', max_length=1, choices=CELULA_CHOICES)
-    criado_em   = models.DateField(verbose_name='Data de Abertura')
-    dia_reuniao = models.TextField(verbose_name='Dia da Reunião',choices=DIAS)
+    name          = models.CharField(verbose_name='Nome do Grupo', max_length=100, blank=True)
+    leader        = models.OneToOneField('members.Lider',on_delete=models.CASCADE)
+    coleader      = models.CharField(verbose_name='Trainee', max_length=35)
+    cell_type     = models.CharField(verbose_name='Célula de', max_length=1, choices=CELULA_CHOICES)
+    created_at    = models.DateField(verbose_name='Data de Abertura')
+    meeting_day   = models.TextField(verbose_name='Dia da Reunião',choices=DIAS)
     #endereço
-    uf          = models.CharField('UF',max_length=2, choices=UF,blank=True)
-    cidade      = models.CharField(max_length=50,verbose_name='Cidade',blank=True)
-    rua         = models.CharField('Rua',max_length=100,blank=True)
-    numero      = models.CharField('Numero',max_length=100,blank=True)
-    bairro      = models.CharField('Bairro',max_length=100, blank=True, null=True)
+    uf            = models.CharField('UF',max_length=2, choices=UF,blank=True)
+    city          = models.CharField(max_length=50,verbose_name='Cidade',blank=True)
+    street        = models.CharField('Rua',max_length=100,blank=True)
+    number        = models.CharField('Numero',max_length=100,blank=True)
+    neighborhood  = models.CharField('Bairro',max_length=100, blank=True, null=True)
     
     class Meta:
         verbose_name = 'Celula'
         verbose_name_plural = 'Celulas'
 
     def __str__(self):
-        return str(self.lider) + ' Célula--' + str(self.nome)
+        return str(self.leader) + ' Célula--' + str(self.name)
 
 
 class Evasao(models.Model):

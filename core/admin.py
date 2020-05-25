@@ -6,7 +6,7 @@ class EvasaoAdmin(admin.ModelAdmin):
 	list_display = ('nome','sexo','date_delete')
 	
 class CelulaAdmin(admin.ModelAdmin):
-	list_display = ('nome','lider',)		
+	list_display = ('name','leader',)		
 
 admin.site.register(Celula,CelulaAdmin)
 admin.site.register(Evasao,EvasaoAdmin)
