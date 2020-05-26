@@ -18,8 +18,8 @@ class Dashboard(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(Dashboard, self).get_context_data(**kwargs)
         today     = datetime.datetime.now()
-        lider     = Lider.objects.filter(nascimento__day=today.day,nascimento__month=today.month).count()
-        discipulo = Discipulo.objects.filter(nascimento__day=today.day,nascimento__month=today.month).count()
+        lider     = Lider.objects.filter(birth__day=today.day,birth__month=today.month).count()
+        discipulo = Discipulo.objects.filter(birth__day=today.day,birth__month=today.month).count()
         context['aniversarios']   = lider + discipulo
         context['celulas']   = Celula.objects.annotate(
             number_of_discipulos=Count('discipulo')).order_by('-number_of_discipulos')
@@ -36,8 +36,8 @@ class AniversariantesView(TemplateView):
     def get_context_data(self, **kwargs):
         context              = super(AniversariantesView, self).get_context_data(**kwargs)
         today                = datetime.datetime.now()
-        context['lideres']     = Lider.objects.filter(nascimento__day=today.day,nascimento__month=today.month)
-        context['discipulos'] = Discipulo.objects.filter(nascimento__day=today.day,nascimento__month=today.month)
+        context['lideres']     = Lider.objects.filter(birth__day=today.day,birth__month=today.month)
+        context['discipulos'] = Discipulo.objects.filter(birth__day=today.day,birth__month=today.month)
         return context
 
    

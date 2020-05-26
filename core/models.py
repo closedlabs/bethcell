@@ -38,7 +38,7 @@ class Evasao(models.Model):
     ministerial_situation   = models.CharField(verbose_name='Situação Ministerial*', max_length=2,
         blank=True,null=True,choices=CATEGORIA_CHOICES)
     date_conversion         = models.DateField(verbose_name='Data da Conversão',blank=True,null=True)
-    date_contrace           = models.DateField(verbose_name='Data Do Encontro', blank=True, null=True)
+    meeting_date           = models.DateField(verbose_name='Data Do Encontro', blank=True, null=True)
     date_batismo            = models.DateField(verbose_name='Data Do Batismo', blank=True, null=True)
     consolidator            = models.CharField(verbose_name='Consolidador', max_length=40, blank=True)
     leader                  = models.ForeignKey('members.Lider', on_delete=models.CASCADE,blank=True,null=True)
