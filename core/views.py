@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import render,get_object_or_404,redirect
-from core.models import Celula
+from core.models import Celula, Evasao
 from members.models import Lider,Discipulo
 from django.db.models import Count
 from core.mixins import DashboardMixin

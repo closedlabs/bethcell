@@ -31,30 +31,30 @@ class Celula(models.Model):
 
 class Evasao(models.Model):
     #dados pessoais
-    nome           = models.CharField(verbose_name='Nome*',null=True ,max_length=40, unique=True)
-    sexo           = models.CharField(verbose_name='Sexo*', max_length=1, choices=SEXO_CHOICES,null=True)
-    nascimento     = models.DateField(verbose_name='Data de nascimento*',blank=True,null=True)
+    name                    = models.CharField(verbose_name='Nome*',null=True ,max_length=40, unique=True)
+    sex                     = models.CharField(verbose_name='Sexo*', max_length=1, choices=SEXO_CHOICES,null=True)
+    birth                   = models.DateField(verbose_name='Data de nascimento*',blank=True,null=True)
    
-    tipo           = models.CharField(verbose_name='Situação Ministerial*', max_length=2,
+    ministerial_situation   = models.CharField(verbose_name='Situação Ministerial*', max_length=2,
         blank=True,null=True,choices=CATEGORIA_CHOICES)
-    data_conversao = models.DateField(verbose_name='Data da Conversão',blank=True,null=True)
-    data_encontro  = models.DateField(verbose_name='Data Do Encontro', blank=True, null=True)
-    data_batismo   = models.DateField(verbose_name='Data Do Batismo', blank=True, null=True)
-    consolidador   = models.CharField(verbose_name='Consolidador', max_length=40, blank=True)
-    lider          = models.ForeignKey('members.Lider', on_delete=models.CASCADE,blank=True,null=True)
-    date_delete    = models.DateTimeField(auto_now_add=True)
-    motivo         = models.CharField(verbose_name='Motivo*',max_length=40,blank=True)
+    date_conversion         = models.DateField(verbose_name='Data da Conversão',blank=True,null=True)
+    date_contrace           = models.DateField(verbose_name='Data Do Encontro', blank=True, null=True)
+    date_batismo            = models.DateField(verbose_name='Data Do Batismo', blank=True, null=True)
+    consolidator            = models.CharField(verbose_name='Consolidador', max_length=40, blank=True)
+    leader                  = models.ForeignKey('members.Lider', on_delete=models.CASCADE,blank=True,null=True)
+    date_delete             = models.DateTimeField(auto_now_add=True)
+    reason                  = models.CharField(verbose_name='Motivo*',max_length=40,blank=True)
     
     def __str__(self):
-        return self.nome
+        return self.name
 
 @receiver(post_delete, sender='members.Discipulo')
 def create_conta(sender, instance, **kwargs):
     if instance:
         Evasao.objects.create(
-        nome=instance,
-        sexo=instance.sexo,
-        motivo='saiu'
+        name=instance,
+        sex=instance.sex,
+        reason='saiu'
     )
             
 def save_conta(sender, instance, **kwargs):

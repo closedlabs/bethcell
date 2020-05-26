@@ -33,14 +33,14 @@
 
                         <!--se quem estiver logado não for profissional ele mostra o select -->
                         <div class="col-md-2 col-sm-2">
-                            <input type="text"class="form-control" name="nome" placeholder="Nome">
+                            <input type="text"class="form-control" name="name" placeholder="Nome">
                         </div>
 
                         <div class="col-md-3">
-                            <input type="text"class="form-control" name="lider" placeholder="Nome do Líder">
+                            <input type="text"class="form-control" name="leader" placeholder="Nome do Líder">
                         </div>
                         <div class="col-md-3">
-                            <select class="selectpicker" name="motivo"data-style="select-with-transition" title="motivo" data-size="7">
+                            <select class="selectpicker" name="reason"data-style="select-with-transition" title="motivo" data-size="7">
                                 <option value=""disabled selected>Motivo (Todos)</option>
                                 <option value="R1">Discípulo não compareceu às consolidações</option>
                                 <option value="R2">Discípulo Viajou</option>
@@ -80,8 +80,8 @@
                         {% for ev in evasao %}
                             <tr>
                                 <td>1</td>
-                                <td>{{ev.nome}}</td>
-                                <td>{{ev.lider}}</td>
+                                <td>{{ev.name}}</td>
+                                <td>{{ev.leader}}</td>
                                 <td>{{ev.date_delete}}</td>
                                 <td>Discípulo não compareceu às consolidações</td>
                                 <td class="td-actions text-right">
