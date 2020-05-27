@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block title %}
-    Sobre {{lider.user}}
+    Sobre {{leader.user}}
 {% endblock title %}
 {% block container %}
 <div class="row">
@@ -11,7 +11,7 @@
                 <i class="material-icons">people</i>
             </div>
             <div class="card-content">
-                <h4 class="card-title">{{lider.user}}</h4>
+                <h4 class="card-title">{{leader.user}}</h4>
                 <div class="table-responsive">
                     <table class="table">
                         <thead class="text-primary">
@@ -21,47 +21,47 @@
                         <tbody>
                             <tr>
                                 <td><b>Data Nascimento</b></td>
-                                <td>{{lider.nascimento|date:'d/m/Y'}}</td>
+                                <td>{{leader.birth|date:'d/m/Y'}}</td>
                             </tr>
                             <tr>
                                 <td><b>Lider</b></td>
-                                <td>{{lider.lider_de_rede|title}}</td>              
+                                <td>{{leader.lider_de_rede|title}}</td>              
                             </tr>
                             <tr>
                                 <td><b>Nº Celular</b></td>
-                                <td>{{lider.telefone}}</td>
+                                <td>{{leader.telephone}}</td>
                             </tr>
                             <tr>
                                 <td><b>Facebook</b></td>
-                                <td>{{lider.facebook}}</td>                              
+                                <td>{{leader.facebook}}</td>                              
                             </tr>
                             <tr>
                                 <td><b>E-mail</b></td>
-                                <td>{{lider.email}}</td>
+                                <td>{{leader.email}}</td>
                             </tr>
                             <tr>
                                 <td><b>Data de Conversão</b></td>
-                                <td>{{lider.data_conversao}}</td>
+                                <td>{{leader.conversion_date}}</td>
                             </tr>
                              <tr>
                                 <td><b>Data de Encontro</b></td>
-                                <td>{{lider.data_encontro}}</td>
+                                <td>{{leader.meeting_date}}</td>
                             </tr>
                              <tr>
                                 <td><b>Data de Batismo</b></td>
-                                <td>{{lider.data_batismo}}</td>
+                                <td>{{leader.date_batismo}}</td>
                             </tr>
                              <tr>
                                 <td><b>Consolidador</b></td>
-                                <td>{{lider.consolidador}}</td>
+                                <td>{{leader.consolidator}}</td>
                             </tr>
                             <tr>
                                 <td><b>Escolaridade</b></td>
-                                <td>{{lider.get_escolaridade_status}}<td>
+                                <td>{{leader.get_schooling_status}}<td>
                             </tr> 
                             <tr>
                                 <td><b>Profissão</b></td>
-                                <td>{{lider.profissao}}</td>
+                                <td>{{leader.profission}}</td>
                             </tr>
                         </tbody>
                     </table>

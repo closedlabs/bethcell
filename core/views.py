@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.shortcuts import render,get_object_or_404,redirect
 from core.models import Celula, Evasao
-from members.models import Lider,Discipulo
+from members.models import Leader,Discipulo
 from django.db.models import Count
 from core.mixins import DashboardMixin
 from django.views.generic import TemplateView,DetailView,CreateView,UpdateView,DeleteView
@@ -18,9 +18,9 @@ class Dashboard(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(Dashboard, self).get_context_data(**kwargs)
         today     = datetime.datetime.now()
-        lider     = Lider.objects.filter(birth__day=today.day,birth__month=today.month).count()
+        leader     = Leader.objects.filter(birth__day=today.day,birth__month=today.month).count()
         discipulo = Discipulo.objects.filter(birth__day=today.day,birth__month=today.month).count()
-        context['aniversarios']   = lider + discipulo
+        context['aniversarios']   = leader + discipulo
         context['celulas']   = Celula.objects.annotate(
             number_of_discipulos=Count('discipulo')).order_by('-number_of_discipulos')
         return context
@@ -36,7 +36,7 @@ class AniversariantesView(TemplateView):
     def get_context_data(self, **kwargs):
         context              = super(AniversariantesView, self).get_context_data(**kwargs)
         today                = datetime.datetime.now()
-        context['lideres']     = Lider.objects.filter(birth__day=today.day,birth__month=today.month)
+        context['lideres']     = Leader.objects.filter(birth__day=today.day,birth__month=today.month)
         context['discipulos'] = Discipulo.objects.filter(birth__day=today.day,birth__month=today.month)
         return context
 
@@ -52,8 +52,8 @@ def celulas(request):
         celulas = Celula.objects.all()
     else:
         usuario = request.user.pk
-        lider   = Lider.objects.get(user=usuario,tipo='LG')
-        celulas = Celula.objects.filter(lider__lider_de_rede=lider)
+        leader   = Leader.objects.get(user=usuario,tipo='LG')
+        celulas = Celula.objects.filter(lider__lider_de_rede=leader)
     context = {
         'celulas':celulas
     }
@@ -80,12 +80,12 @@ class CelulaDetailView(SuccessMessageMixin,DetailView):
     def get_context_data(self, **kwargs):
         context = super(CelulaDetailView, self).get_context_data(**kwargs)
         #celula = Celula.get_object_or_404(Celula,pk=pk)
-        context['nivel_0']  = Discipulo.objects.filter(celula=self.object,tipo='N0').count()
-        context['nivel_1']  = Discipulo.objects.filter(celula=self.object,tipo='N1').count()
-        context['nivel_2']  = Discipulo.objects.filter(celula=self.object,tipo='N2').count()
-        context['nivel_3']  = Discipulo.objects.filter(celula=self.object,tipo='N3').count()
-        context['trainee']  = Discipulo.objects.filter(celula=self.object,tipo='N4').count()
-        context['trainee_formado']  = Discipulo.objects.filter(celula=self.object,tipo='N5').count()
+        context['nivel_0']  = Discipulo.objects.filter(celula=self.object,ladder='N0').count()
+        context['nivel_1']  = Discipulo.objects.filter(celula=self.object,ladder='N1').count()
+        context['nivel_2']  = Discipulo.objects.filter(celula=self.object,ladder='N2').count()
+        context['nivel_3']  = Discipulo.objects.filter(celula=self.object,ladder='N3').count()
+        context['trainee']  = Discipulo.objects.filter(celula=self.object,ladder='N4').count()
+        context['trainee_formado']  = Discipulo.objects.filter(celula=self.object,ladder='N5').count()
         return context
 
 class CelulaDeleteView(DeleteView):

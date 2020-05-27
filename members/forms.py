@@ -1,10 +1,10 @@
 from django import forms
-from members.models import Lider,Discipulo
+from members.models import Leader,Discipulo
 
 
-class LiderForm(forms.ModelForm):
+class LeaderForm(forms.ModelForm):
     class Meta:
-        model = Lider
+        model = Leader
         exclude = ['user','slug']
         fields = '__all__'
         widgets = {
@@ -12,7 +12,7 @@ class LiderForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'form-control'}),
             'birth': forms.DateInput(attrs={'class': 'form-control datetimepicker'}),
             'sex': forms.Select(attrs={'class':'selectpicker','data-style':'select-with-transition','data-size':7}),
-            'ministerial_situation': forms.Select(attrs={'class':'selectpicker','data-style':'select-with-transition','data-size':7}),
+            'ladder': forms.Select(attrs={'class':'selectpicker','data-style':'select-with-transition','data-size':7}),
             'lider_de_rede': forms.Select(attrs={'class':'selectpicker','data-style':'select-with-transition','data-size':7}),
             'telephone':forms.TextInput(attrs={'class':'form-control'}),
             'schooling':forms.Select(attrs={'class':'selectpicker','data-style':'select-with-transition','data-size':7}),
@@ -41,12 +41,12 @@ class DiscipuloForm(forms.ModelForm):
             'sex': forms.Select(attrs={'class':'selectpicker',
                 'data-style':'select-with-transition','data-size':7,'data-live-search':'true','title':'Escolha a cidade'}),
             'birth': forms.DateInput(attrs={'class': 'form-control datetimepicker'}),
-            'lider': forms.Select(attrs={'class':'selectpicker', 
+            'leader': forms.Select(attrs={'class':'selectpicker', 
                 'data-style':'select-with-transition','data-size':7,'data-live-search':'true'}),
             'cell': forms.Select(attrs={'class':'selectpicker',
                 'data-style':'select-with-transition','data-size':7,'data-live-search':'true'}),
             #'lider': forms.Select(attrs={'class':'selectpicker','data-style':'select-with-transition','data-size':7}),
-            'ministerial_situation': forms.Select(attrs={'class':'selectpicker',
+            'ladder': forms.Select(attrs={'class':'selectpicker',
                 'data-style':'select-with-transition','data-size':7,'title':'Escolha a cidade'}),
             'conversion_date':forms.TextInput(attrs={'class':'form-control datetimepicker'}),
             'profession':forms.TextInput(attrs={'class':'form-control datetimepicker'}),

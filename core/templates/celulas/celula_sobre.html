@@ -24,38 +24,38 @@
                         
                         <tr>
                             <th class="col-md-3 text-right">Lider De Célula <i class="fa fa-user" aria-hidden="true"></i></th>
-                            <td>{{object.lider}}</td>
+                            <td>{{object.leader}}</td>
                         </tr>
                         
                         <tr>
                             <th class="col-md-3 text-right">Trainee <i class="fa fa-user-o" aria-hidden="true"></i></th>
-                            <td>{{object.colider}}</td>
+                            <td>{{object.coleader}}</td>
                         </tr>
                         
                         <tr>
                             <th class="col-md-3 text-right">Endereço <i class="fa fa-map-marker" aria-hidden="true"></i></th>
-                            <td>{{object.rua}} Nº {{object.numero}} {{object.bairro}}</td>
+                            <td>{{object.street}} Nº {{object.number}} {{object.neighborhood}}</td>
                         </tr>
                         
                         <tr>
                             <th class="col-md-3 text-right">Data de Arbertura <i class="fa fa-calendar" aria-hidden="true"></i></th>
-                            <td>{{object.criado_em|date:"d/m/Y"}}</td>
+                            <td>{{object.created_at|date:"d/m/Y"}}</td>
                         </tr>
                         
                         <tr>
                             <th class="col-md-3 text-right">Contato <i class="fa fa-phone" aria-hidden="true"></i></th>
-                            <td>{{object.lider.telefone}}</td>
+                            <td>{{object.leader.telephone}}</td>
                         </tr>
                                             
                         <tr>
                             <th class="col-md-3 text-right">Perfil <i class="fa fa-user" aria-hidden="true"></i></th>
-                            <td>{{object.get_celula_de_display}}</td>
+                            <td>{{object.get_cell_type_display}}</td>
                         </tr>
                         
                         
                         <tr>
                             <th class="col-md-3 text-right">Dia da Reunião <i class="fa fa-pencil" aria-hidden="true"></i></th>
-                            <td>{{object.get_dia_reuniao_display}}</td>
+                            <td>{{object.get_meeting_day_display}}</td>
                         </tr>
                     
                     </tbody>
@@ -175,10 +175,10 @@
                             <tr>
                                 <td>{{membro.id}}</td>
                                 <td><a href="frequencia_cel.html">{{membro.nome|title}}</a></td>
-                                <td>{{membro.lider}}</td>
-                                <td>{{membro.get_tipo_display}}</td>
-                                <td>{{membro.telefone}}</td>
-                                <td>{{membro.escolaridade}}</td>
+                                <td>{{membro.leader}}</td>
+                                <td>{{membro.get_ministry_display}}</td>
+                                <td>{{membro.telephone}}</td>
+                                <td>{{membro.schooling}}</td>
                                 <td class="td-actions text-right">
                                     <a href="{% url 'discipulo_update' membro.slug %}" rel="tooltip" class="btn btn-success btn-round">
                                         <i class="material-icons">edit</i>

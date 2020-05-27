@@ -9,7 +9,7 @@ from core.choices import SEXO_CHOICES,CATEGORIA_CHOICES,ESCOLARIDADE,UF,DIAS,CEL
 
 class Celula(models.Model):
     name          = models.CharField(verbose_name='Nome do Grupo', max_length=100, blank=True)
-    leader        = models.OneToOneField('members.Lider',on_delete=models.CASCADE)
+    leader        = models.OneToOneField('members.Leader',on_delete=models.CASCADE)
     coleader      = models.CharField(verbose_name='Trainee', max_length=35)
     cell_type     = models.CharField(verbose_name='Célula de', max_length=1, choices=CELULA_CHOICES)
     created_at    = models.DateField(verbose_name='Data de Abertura')
@@ -35,13 +35,13 @@ class Evasao(models.Model):
     sex                     = models.CharField(verbose_name='Sexo*', max_length=1, choices=SEXO_CHOICES,null=True)
     birth                   = models.DateField(verbose_name='Data de nascimento*',blank=True,null=True)
    
-    ministerial_situation   = models.CharField(verbose_name='Situação Ministerial*', max_length=2,
+    ladder   = models.CharField(verbose_name='Escada do Sucesso*', max_length=2,
         blank=True,null=True,choices=CATEGORIA_CHOICES)
     date_conversion         = models.DateField(verbose_name='Data da Conversão',blank=True,null=True)
     meeting_date           = models.DateField(verbose_name='Data Do Encontro', blank=True, null=True)
     date_batismo            = models.DateField(verbose_name='Data Do Batismo', blank=True, null=True)
     consolidator            = models.CharField(verbose_name='Consolidador', max_length=40, blank=True)
-    leader                  = models.ForeignKey('members.Lider', on_delete=models.CASCADE,blank=True,null=True)
+    leader                  = models.ForeignKey('members.Leader', on_delete=models.CASCADE,blank=True,null=True)
     date_delete             = models.DateTimeField(auto_now_add=True)
     reason                  = models.CharField(verbose_name='Motivo*',max_length=40,blank=True)
     

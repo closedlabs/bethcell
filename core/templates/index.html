@@ -6,7 +6,7 @@
 	<title>Document</title>
 </head>
 <body>
-	{% for l in lider  %}
+	{% for l in leader  %}
 		<h3>Pastores</h3>
 		<a href="{% url 'lista_filhos' l.pk %}"><b>{{l|upper}}</b></a>
 	{% endfor %}

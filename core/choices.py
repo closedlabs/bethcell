@@ -19,9 +19,6 @@ CATEGORIA_CHOICES   = (
     ('N3','Cursando-N3'),
     ('N4','Cursando-Trainee'),
     ('N5','Trainee Formado'),
-	('LC','Lider de Célula'),
-	('LG','Lider de Geração'),
-	('PR','Pastores'),
 
 )
 

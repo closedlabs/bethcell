@@ -7,7 +7,7 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from .forms import CustomUserCreationForm
-from members.models import Lider
+from members.models import Leader
 from core.models import Celula
 
 '''
@@ -25,8 +25,8 @@ def login_success(request):
         return redirect('dashboard')
     else:
         usuario = request.user.pk
-        lider   = Lider.objects.filter(user=usuario)
-        celula  = Celula.objects.filter(lider__in=lider)
+        leader   = Leader.objects.filter(user=usuario)
+        celula  = Celula.objects.filter(leader__in=leader)
         if celula.exists():
             return redirect('/celula/sobre/'+str(int(celula[0].id)))
         else:

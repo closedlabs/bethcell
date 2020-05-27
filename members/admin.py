@@ -1,13 +1,13 @@
 from django.contrib import admin
-from members.models import Lider,Discipulo
+from members.models import Leader,Discipulo
 
 
-class LiderAdmin(admin.ModelAdmin):
-	list_display = ('user','ministerial_situation','lider_de_rede')
+class LeaderAdmin(admin.ModelAdmin):
+	list_display = ('user','ministry','lider_de_rede')
 
 
 class DiscipuloAdmin(admin.ModelAdmin):
-	list_display = ('name','lider','ministerial_situation','celula')	
+	list_display = ('name','leader','ladder','cell')	
 
-admin.site.register(Lider,LiderAdmin)	
+admin.site.register(Leader,LeaderAdmin)	
 admin.site.register(Discipulo,DiscipuloAdmin)

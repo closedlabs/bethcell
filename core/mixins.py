@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from core.models import Celula
-from members.models import Lider,Discipulo
+from members.models import Leader,Discipulo
 
 class DashboardMixin(object):
     #conta o total de lideres no banco.. 
@@ -8,20 +8,20 @@ class DashboardMixin(object):
         context              = super(DashboardMixin, self).get_context_data(**kwargs)
         #is admin
         if self.request.user.is_superuser:
-            context['lideres_count']    = Lider.objects.all().count()
+            context['lideres_count']    = Leader.objects.all().count()
             context['celulas_count']    = Celula.objects.all().count()
             context['discipulos_count'] = Discipulo.objects.all().count()
 
         else:
-            lider = Lider.objects.get(user=self.request.user.pk,tipo='LG')
-            context['lideres_count']     = Lider.objects.filter(lider_de_rede=lider).count()
-            context['celulas_count']     = Celula.objects.filter(lider__lider_de_rede=lider).count()
-            context['discipulos_count']  = Discipulo.objects.filter(lider__lider_de_rede=lider).count()
+            leader = Leader.objects.get(user=self.request.user.pk,tipo='LG')
+            context['lideres_count']     = Leader.objects.filter(lider_de_rede=leader).count()
+            context['celulas_count']     = Celula.objects.filter(lider__lider_de_rede=leader).count()
+            context['discipulos_count']  = Discipulo.objects.filter(lider__lider_de_rede=leader).count()
         return context
     
     #retorna os aniversariantes do dia..
     def aniversarios(self):
-        today     = timezone.now().date()
-        lider     = Lider.objects.filter(nascimento__day=today.day,nascimento__month=today.month).count()
-        discipulo = Discipulo.objects.filter(nascimento__day=today.day,nascimento__month=today.month).count()
-        return discipulo + lider
+        today     = Leader.now().date()
+        leader     = Lider.objects.filter(birth__day=today.day,birth_month=today.month).count()
+        discipulo = Discipulo.objects.filter(birth__day=today.day,birth__month=today.month).count()
+        return discipulo + leader

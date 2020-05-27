@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from django.views.generic import TemplateView,DetailView,CreateView,UpdateView,DeleteView
-from members.models import Lider,Discipulo
+from members.models import Leader,Discipulo
 from django.contrib import messages
-from members.forms import LiderForm,DiscipuloForm
+from members.forms import LeaderForm,DiscipuloForm
 from accounts.forms import CustomUserCreationForm
 from django.contrib.messages.views import SuccessMessageMixin
 '''
@@ -12,8 +12,8 @@ from django.contrib.messages.views import SuccessMessageMixin
 '''
 
 def lista_lider(request):
-    query = Lider.objects.filter(tipo='PR')
-    return render(request,'index.html',{'lider':query})
+    query = Leader.objects.filter(tipo='PR')
+    return render(request,'index.html',{'leader':query})
 
 """
 def lista_filhos(request,pk):
@@ -22,12 +22,11 @@ def lista_filhos(request,pk):
 """
 def leaders(request):
     if request.user.is_superuser:
-        lideres = Lider.objects.all()
+        lideres = Leader.objects.all()
     else:
         usuario = request.user.pk
-        lider = Lider.objects.get(user=usuario,tipo='LG')
-        print('lider de rede:',lider)
-        lideres = Lider.objects.filter(lider_de_rede=lider)
+        leader = Leader.objects.get(user=usuario,tipo='LG')
+        lideres = Leader.objects.filter(lider_de_rede=leader)
     context = {
         'lideres':lideres
     }
@@ -39,9 +38,9 @@ def add_leader(request):
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()  # load the leader instance created by the signal
-            user.user.lider_de_rede = form.cleaned_data.get('lider')
-            user.user.tipo = form.cleaned_data.get('tipo_lider')
-            user.user.sexo = form.cleaned_data.get('sexo')
+            user.user.lider_de_rede = form.cleaned_data.get('leader')
+            user.user.tipo = form.cleaned_data.get('ministry')
+            user.user.sexo = form.cleaned_data.get('sex')
             user.save()
             messages.success(request, "Novo Lider Cadastrado Com Sucesso!")
             return redirect('leaders')
@@ -50,26 +49,26 @@ def add_leader(request):
     return render(request, 'leaders/add_leader.html', {'form': form})
 
 class LeaderDetailView(DetailView):
-    model = Lider
+    model = Leader
     template_name = "leaders/leader_detail.html"
 
 class LeaderUpdateView(SuccessMessageMixin,UpdateView):
-    model = Lider
+    model = Leader
     template_name = "leaders/leader_update.html"
-    form_class = LiderForm
+    form_class = LeaderForm
     success_url = '/leaders'
     success_message = 'Dados Atualizos Com Sucesso!!!!'
 
 class LeaderDeleteView(DeleteView):
-    model         = Lider
+    model         = Leader
     template_name = "leaders/leader_delete.html"
     success_url   = '/leaders'
 
 
 """
 def update_usuario(request,pk):
-    lider = Lider.objects.get(pk=pk)
-    lider_form = LiderForm(request.POST or None, instance=lider)
+    leader = Lider.objects.get(pk=pk)
+    lider_form = LeaderForm(request.POST or None, instance=leader)
     if lider_form.is_valid():
         lider_form.save()
         #messages.success(request, ('Dados atualizados com Sucesso!'))
@@ -81,8 +80,8 @@ def update_usuario(request,pk):
 
 """
 def lider_delete(request,pk):
-    lider = get_object_or_404(Lider,pk=pk)
-    lider.delete()
+    leader = get_object_or_404(Lider,pk=pk)
+    leader.delete()
     return redirect(request.META['HTTP_REFERER'])
 """
     
@@ -97,8 +96,8 @@ def discipulos(request):
         discipulos = Discipulo.objects.all()
     else:
         usuario    = request.user.pk
-        lider      = Lider.objects.get(user=usuario,tipo='LG')
-        discipulos = Discipulo.objects.filter(lider__lider_de_rede=lider)
+        leader      = Leader.objects.get(user=usuario,ministry='LG')
+        discipulos = Discipulo.objects.filter(lider__lider_de_rede=leader)
     context = {
         'discipulos':discipulos
     }

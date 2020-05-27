@@ -2,15 +2,15 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import get_user_model
 from core.choices import LIDER_CHOICES,SEXO_CHOICES
-from members.models import Lider
+from members.models import Leader
 
 class CustomUserCreationForm(UserCreationForm):
-    tipo_lider =  forms.CharField(widget=forms.Select(choices=LIDER_CHOICES,
+    ministry =  forms.CharField(widget=forms.Select(choices=LIDER_CHOICES,
         attrs={'class':'selectpicker','data-style':'select-with-transition','data-size':7}))
-    lider      =  forms.ModelChoiceField(required = False,queryset=Lider.objects.all(),
+    leader      =  forms.ModelChoiceField(required = False,queryset=Leader.objects.all(),
         widget=forms.Select(attrs={'class':'selectpicker','data-style':'select-with-transition',
             'data-size':7,'data-live-search':'true'}))
-    sexo       =  forms.ChoiceField(choices=SEXO_CHOICES,widget=forms.Select(
+    sex       =  forms.ChoiceField(choices=SEXO_CHOICES,widget=forms.Select(
         attrs={'class':'selectpicker','data-style':'select-with-transition','data-size':7}))
     
     class Meta:

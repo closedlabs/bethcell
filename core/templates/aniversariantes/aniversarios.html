@@ -29,10 +29,10 @@
 							{% for lider in lideres %}
 								<tr>
 								<td>1</td>
-								<td>{{lider.nome}}</td>
+								<td>{{lider.name}}</td>
 								<td>{{lider_de_rede}}</td>
-								<td>{{lider.get_sexo_status}}</td>
-								<td class="text-right">{{lider.nascimento|date:'d/m/Y'}}</td>
+								<td>{{lider.get_sex_status}}</td>
+								<td class="text-right">{{lider.birth|date:'d/m/Y'}}</td>
 								<td class="td-actions text-right">
 									<a href="{% url 'lider_detalhe' lider.slug %}"type="button" rel="tooltip" class="btn btn-info btn-round">
 										<i class="material-icons">open_in_browser</i>
@@ -74,9 +74,9 @@
 								<tr>
 								<td>1</td>
 								<td>{{discipulo.nome}}</td>
-								<td>{{discipulo.lider}}</td>
-								<td>{{discipulo.get_sexo_status}}</td>
-								<td class="text-right">{{discipulo.nascimento|date:'d/m/Y'}}</td>
+								<td>{{discipulo.leader}}</td>
+								<td>{{discipulo.get_sex_status}}</td>
+								<td class="text-right">{{discipulo.birth|date:'d/m/Y'}}</td>
 								<td class="td-actions text-right">
 									<a  href="{% url 'discipulo_detalhe' discipulo.slug %}"type="button" rel="tooltip" class="btn btn-info btn-round">
 										<i class="material-icons">open_in_browser</i>
