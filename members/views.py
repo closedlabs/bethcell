@@ -25,8 +25,9 @@ def leaders(request):
         lideres = Leader.objects.all()
     else:
         usuario = request.user.pk
-        leader = Leader.objects.get(user=usuario,tipo='LG')
+        leader = Leader.objects.get(user=usuario,ministry='LG')
         lideres = Leader.objects.filter(lider_de_rede=leader)
+        print(lideres, "Esse é um Lider")
     context = {
         'lideres':lideres
     }
@@ -39,8 +40,8 @@ def add_leader(request):
             user = form.save()
             user.refresh_from_db()  # load the leader instance created by the signal
             user.user.lider_de_rede = form.cleaned_data.get('leader')
-            user.user.tipo = form.cleaned_data.get('ministry')
-            user.user.sexo = form.cleaned_data.get('sex')
+            user.user.ministry = form.cleaned_data.get('ministry')
+            user.user.sex = form.cleaned_data.get('sex')
             user.save()
             messages.success(request, "Novo Lider Cadastrado Com Sucesso!")
             return redirect('leaders')
