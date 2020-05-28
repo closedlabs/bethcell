@@ -174,7 +174,7 @@
                             {% for membro in celula.discipulo_set.all %}                                          
                             <tr>
                                 <td>{{membro.id}}</td>
-                                <td><a href="frequencia_cel.html">{{membro.nome|title}}</a></td>
+                                <td><a href="frequencia_cel.html">{{membro.name|title}}</a></td>
                                 <td>{{membro.leader}}</td>
                                 <td>{{membro.get_ministry_display}}</td>
                                 <td>{{membro.telephone}}</td>

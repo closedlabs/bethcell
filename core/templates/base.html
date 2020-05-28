@@ -101,19 +101,19 @@
             <div class="collapse" id="pagesExamples">
                 <ul class="nav">
                     <li>
-                        <a href="{% url 'adicionar_celula' %}">
+                        <a href="{% url 'celulas' %}">
                             <i class="material-icons">adjust</i>
                             <span class="sidebar-normal"> Célula </span>
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'add_leader' %}">
+                        <a href="{% url 'leaders' %}">
                             <i class="material-icons">person</i>
                             <span class="sidebar-normal"> Líder de Célula </span>
                         </a>
                     </li>
                     <li>
-                        <a href="{% url 'adicionar_discipulo' %}">
+                        <a href="{% url 'discipulos' %}">
                             <i class="material-icons">person_outline</i>
                             <span class="sidebar-normal"> Discípulo </span>
                         </a>
@@ -179,8 +179,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"> Principal </a>
+                <a class="navbar-brand" href="#"> BethCell - Home </a>
             </div>
+        <!--
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
@@ -227,6 +228,7 @@
                 </button>
             </form>
         </div>
+    -->
         {% if messages %}
           {% for message in messages %}
            <div class="col-md-5">

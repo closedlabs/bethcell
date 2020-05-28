@@ -80,12 +80,12 @@ class CelulaDetailView(SuccessMessageMixin,DetailView):
     def get_context_data(self, **kwargs):
         context = super(CelulaDetailView, self).get_context_data(**kwargs)
         #celula = Celula.get_object_or_404(Celula,pk=pk)
-        context['nivel_0']  = Discipulo.objects.filter(celula=self.object,ladder='N0').count()
-        context['nivel_1']  = Discipulo.objects.filter(celula=self.object,ladder='N1').count()
-        context['nivel_2']  = Discipulo.objects.filter(celula=self.object,ladder='N2').count()
-        context['nivel_3']  = Discipulo.objects.filter(celula=self.object,ladder='N3').count()
-        context['trainee']  = Discipulo.objects.filter(celula=self.object,ladder='N4').count()
-        context['trainee_formado']  = Discipulo.objects.filter(celula=self.object,ladder='N5').count()
+        context['nivel_0']  = Discipulo.objects.filter(cell=self.object,ladder='N0').count()
+        context['nivel_1']  = Discipulo.objects.filter(cell=self.object,ladder='N1').count()
+        context['nivel_2']  = Discipulo.objects.filter(cell=self.object,ladder='N2').count()
+        context['nivel_3']  = Discipulo.objects.filter(cell=self.object,ladder='N3').count()
+        context['trainee']  = Discipulo.objects.filter(cell=self.object,ladder='N4').count()
+        context['trainee_formado']  = Discipulo.objects.filter(cell=self.object,ladder='N5').count()
         return context
 
 class CelulaDeleteView(DeleteView):
