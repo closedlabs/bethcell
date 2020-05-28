@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.views.generic import TemplateView,DetailView,CreateView,UpdateView,DeleteView
 from members.models import Leader,Discipulo
 from django.contrib import messages
@@ -130,7 +130,7 @@ def discipulo_delete(request,slug):
     discipulo = get_object_or_404(Discipulo,slug=slug)   
     form = DiscipuloForm(request.POST or None,instance=discipulo)
     if request.method == 'POST':
-        discipulo.saiu = request.POST.get('motivo')
+        discipulo.exited = request.POST.get('motivo')
         discipulo.save()
         discipulo.delete()
         return redirect('discipulos')

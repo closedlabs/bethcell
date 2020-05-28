@@ -44,7 +44,7 @@ class Leader(Member):
     	on_delete=models.CASCADE, related_name='user')
     lider_de_rede   = models.ForeignKey("self",verbose_name='Leader*',on_delete=models.CASCADE,
     blank=True,null=True, related_name="liderado")
-    ministry   = models.CharField(verbose_name='Situação Ministerial*', max_length=2,
+    ministry        = models.CharField(verbose_name='Situação Ministerial*', max_length=2,
         blank=True,null=True,choices=LIDER_CHOICES)
 
     class Meta:

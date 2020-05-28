@@ -54,7 +54,7 @@ def create_conta(sender, instance, **kwargs):
         Evasao.objects.create(
         name=instance,
         sex=instance.sex,
-        reason='saiu'
+        reason=instance.exited
     )
             
 def save_conta(sender, instance, **kwargs):

@@ -3,7 +3,7 @@ from members.models import Leader,Discipulo
 
 
 class LeaderAdmin(admin.ModelAdmin):
-	list_display = ('user','ministry','lider_de_rede')
+	list_display = ('user','ministry','lider_de_rede','slug')
 
 
 class DiscipuloAdmin(admin.ModelAdmin):
