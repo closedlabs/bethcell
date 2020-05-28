@@ -6,11 +6,11 @@
 			<i class="material-icons"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">people</font></font></i>
 		</div>
 		<div class="card-content">
-			<h4 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Atualizar Meus Dados</font></font></h4>
+			<h4 class="card-title"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Atualizar Senha</font></font></h4>
 			<form method="POST">
 				{% csrf_token %}
 				<div class="row">
-					{{profile_form.as_p}}
+					{{form.as_p}}
 				</div>				
 				
 				<button type="submit" class="btn btn-round btn-rose  pull-right"><font style="vertical-align: inherit;"><font style="vertical-align:inherit;">Cadastrar</font></font></button>

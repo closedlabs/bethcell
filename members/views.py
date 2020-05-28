@@ -53,12 +53,12 @@ class LeaderDetailView(DetailView):
     model = Leader
     template_name = "leaders/leader_detail.html"
 
-class LeaderUpdateView(SuccessMessageMixin,UpdateView):
-    model = Leader
-    template_name = "leaders/leader_update.html"
-    form_class = LeaderForm
-    success_url = '/leaders'
-    success_message = 'Dados Atualizos Com Sucesso!!!!'
+# class LeaderUpdateView(SuccessMessageMixin,UpdateView):
+#     model = Leader
+#     template_name = "leaders/leader_update.html"
+#     form_class = LeaderForm
+#     success_url = '/leaders'
+#     success_message = 'Dados Atualizos Com Sucesso!!!!'
 
 class LeaderDeleteView(DeleteView):
     model         = Leader
@@ -66,18 +66,18 @@ class LeaderDeleteView(DeleteView):
     success_url   = '/leaders'
 
 
-"""
-def update_usuario(request,pk):
-    leader = Lider.objects.get(pk=pk)
+
+def leader_update(request,slug):
+    leader = Leader.objects.get(slug=slug)
     lider_form = LeaderForm(request.POST or None, instance=leader)
     if lider_form.is_valid():
         lider_form.save()
         #messages.success(request, ('Dados atualizados com Sucesso!'))
-        return redirect('home')
-    return render(request, 'update_lider.html', {
-        'form': lider_form
+        return redirect('leaders')
+    return render(request, 'leaders/leader_update.html', {
+        'profile_form': lider_form
     })
-"""
+
 
 """
 def lider_delete(request,pk):

@@ -5,7 +5,7 @@ urlpatterns = [
 ##############################CRUD DE LIDERES############################################
 	path('leaders/',views.leaders,name="leaders"),
 	path('add_leader/',views.add_leader, name='add_leader'),
-	path('leader/<str:slug>/update/',views.LeaderUpdateView.as_view(), name='leader_update'),
+	path('leader/<str:slug>/update/',views.leader_update, name='leader_update'),
 	path('leader/<str:slug>/detail',views.LeaderDetailView.as_view(),name="leader_detail"),
 	path('leader/<str:slug>/delete',views.LeaderDeleteView.as_view(),name="leader_delete"),
 	path('pastores/',views.lista_lider,name="pastores"),

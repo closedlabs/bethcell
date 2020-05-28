@@ -38,5 +38,5 @@ class CustomUserChangeForm(UserChangeForm):
 
     class Meta:
         model  = get_user_model()
-        fields = ('username', 'email','is_cell_leader','is_generation_leader','is_teacher')
+        fields = ('username', 'email',)
 
