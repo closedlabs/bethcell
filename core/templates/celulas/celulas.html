@@ -8,14 +8,13 @@
         <div class="card">
             <div class="card-header card-header-icon" data-background-color="rose">
                 <i class="material-icons">location_city</i>
+                <h4 class="card-title">Células Cadastradas</h4>
+                       
             </div>                              
             <div class="card-content">
                 <div class="row">  
                     <div class="col-md-12">
-                        <div class="col-md-3 text-right">
-                            <h4 class="card-title">Células</h4>
-                        </div>
-                        <div class="col-md-9 text-right">
+                        <div class="col-md-12 text-right">
                             <a href="javascript: history.go(-1)"class="btn btn-primary btn-round btn-fab btn-fab-mini"id="id_button_back">
                               <i class="material-icons">reply</i>
                             </a>
@@ -56,26 +55,15 @@
                             <tr>
                                 <th style="width:5%;">Nº</th>
                                 <th style="width:22%;">Líder</th>
-                                <th style="width:20%;">Nome da Célula</th>
+                                <th style="width:20%;">Célula</th>
                                 <th style="width:15%;">Trainee</th>
-                                <th style="width:10%;">Data/Abertura</th>
-                                <th class="text-center" style="width:11%;">Integrantes</th>
+                                <th style="width:10%;">Abertura</th>
+                                <th class="text-center" style="width:11%;">Discípulos</th>
                                 <th style="width:5%;">Perfil</th>
                                 <th style="width:12%;" class="td-actions text-right">Ações</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                                <th style="width:5%;">Nº</th>
-                                <th style="width:22%;">Líder</th>
-                                <th style="width:20%;">Nome da Célula</th>
-                                <th style="width:15%;">Trainee</th>
-                                <th style="width:10%;">Data/Abertura</th>
-                                <th class="text-center" style="width:11%;">Integrantes</th>
-                                <th style="width:5%;">Perfil</th>
-                                <th style="width:12%;" class="disabled-sorting text-right">Ações</th>
-                            </tr>
-                        </tfoot>
+                        
                         <tbody>
                             {% for celula in celulas %}
                                 <tr>
@@ -105,23 +93,7 @@
             </div>
         </div>
     </div>
-</div> <!-- end col-md-12 -->
-<script  type="text/javascript">
-    $("#remover").click(function(){
-        swal({
-            type: 'warning',  
-            title: 'Deseja Realmente deletar?',
-            text:'Você esta prestes a deletar esta Célula!',
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            cancelButtonText: "Cancelar",
-            confirmButtonText: "Sim, Deletar!",
-            }).then(function (result) {
-            swal({
-                type: 'success',
-                html: 'Deletado com sucesso'
-            })
-        })
-    });
-</script>
+</div> 
+<!-- end col-md-12 -->
+
 {% endblock container %}

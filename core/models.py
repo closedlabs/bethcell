@@ -5,6 +5,7 @@ from django.dispatch import receiver
 from core.utils import unique_slug_generator
 from django.urls import reverse
 from core.choices import SEXO_CHOICES,CATEGORIA_CHOICES,ESCOLARIDADE,UF,DIAS,CELULA_CHOICES,EVASAO
+from datetime import datetime
 
 
 class Celula(models.Model):

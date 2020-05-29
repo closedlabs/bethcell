@@ -6,10 +6,10 @@ from django.views.generic import UpdateView,CreateView
 from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
-from .forms import CustomUserCreationForm
+from .forms import CustomUserCreationForm,CustomUserChangeForm
 from members.models import Leader
 from core.models import Celula
-
+from .models import CustomUser
 '''
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 +                           Views de Usuarios
@@ -32,10 +32,17 @@ def login_success(request):
         else:
             return redirect('dashboard')
 
-
-        
-
 class SignUpView(CreateView):
     form_class = CustomUserCreationForm
     success_url = reverse_lazy('login')
     template_name = 'signup.html'
+
+class UserUpdateView(UpdateView):
+    model = CustomUser
+    template_name = "user/update.html"
+    form_class = CustomUserChangeForm
+    success_url = '/leaders'
+    success_message = 'Dados Atualizos Com Sucesso!!!!'
+
+    def get_object(self, queryset=None):
+        return self.request.user

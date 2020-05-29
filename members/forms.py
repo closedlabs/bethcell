@@ -25,7 +25,10 @@ class LeaderForm(forms.ModelForm):
             'city':forms.TextInput(attrs={'class':'form-control'}),
             'number':forms.TextInput(attrs={'class':'form-control'}),
             'facebook':forms.TextInput(attrs={'class':'form-control'}),
+            'complement':forms.TextInput(attrs={'class':'form-control'}),
             'uf': forms.Select(attrs={'class':'selectpicker',
+                'data-style':'select-with-transition','data-size':7,'data-live-search':'true'}),
+            'ministry': forms.Select(attrs={'class':'selectpicker',
                 'data-style':'select-with-transition','data-size':7,'data-live-search':'true'}),
             'profession': forms.TextInput(attrs={'class': 'form-control'}),
         }

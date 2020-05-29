@@ -12,7 +12,7 @@ from django.contrib import messages
 from django.contrib.messages.views import SuccessMessageMixin
 import datetime
 
-class Dashboard(TemplateView):
+class Dashboard(DashboardMixin,TemplateView):
     template_name = "dashboard.html"
 
     def get_context_data(self, **kwargs):
@@ -22,7 +22,7 @@ class Dashboard(TemplateView):
         discipulo = Discipulo.objects.filter(birth__day=today.day,birth__month=today.month).count()
         context['aniversarios']   = leader + discipulo
         context['celulas']   = Celula.objects.annotate(
-            number_of_discipulos=Count('discipulo')).order_by('-number_of_discipulos')
+            number_of_discipulos=Count('discipulo')).order_by('-number_of_discipulos')[:12]
         return context
 
 
@@ -34,10 +34,10 @@ class AniversariantesView(TemplateView):
     template_name = "aniversariantes/aniversarios.html"
 
     def get_context_data(self, **kwargs):
-        context              = super(AniversariantesView, self).get_context_data(**kwargs)
-        today                = datetime.datetime.now()
-        context['lideres']     = Leader.objects.filter(birth__day=today.day,birth__month=today.month)
-        context['discipulos'] = Discipulo.objects.filter(birth__day=today.day,birth__month=today.month)
+        context                 = super(AniversariantesView, self).get_context_data(**kwargs)
+        today                   = datetime.datetime.now()
+        context['lideres']      = Leader.objects.filter(birth__day=today.day,birth__month=today.month)
+        context['discipulos']   = Discipulo.objects.filter(birth__day=today.day,birth__month=today.month)
         return context
 
    
@@ -52,9 +52,9 @@ def celulas(request):
         celulas = Celula.objects.all()
     else:
         usuario = request.user.pk
-        leader   = Leader.objects.get(user=usuario,tipo='LG')
+        leader  = Leader.objects.get(user=usuario,tipo='LG')
         celulas = Celula.objects.filter(lider__lider_de_rede=leader)
-    context = {
+    context     = {
         'celulas':celulas
     }
     return render(request,'celulas/celulas.html',context)

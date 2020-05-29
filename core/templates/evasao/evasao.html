@@ -14,12 +14,9 @@
                             <h4 class="card-title">Lista de Evasões</h4>
                         </div>
                         <div class="col-md-9 text-right">
-                            <button class="btn btn-primary btn-round btn-fab btn-fab-mini">
-                                <a href="javascript: history.go(-1)"><i class="material-icons">reply</i></a>
-                            </button>
-                            <button class="btn btn-info btn-round btn-fab btn-fab-mini card-title">
-                                <i class="material-icons">add</i>
-                            </button>
+                            <a href="javascript: history.go(-1)"class="btn btn-primary btn-round btn-fab btn-fab-mini"id="id_button_back">
+                              <i class="material-icons">reply</i>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -66,20 +63,10 @@
                                 <th style="width:10%;" class="td-actions text-right">Resgatar</th>
                             </tr>
                         </thead>
-                        <tfoot>
-                            <tr>
-                               <th style="width:5%;">Nº</th>
-                               <th style="width:25%;">Nome</th>
-                               <th style="width:25%;">Líder</th>
-                               <th style="width:10%;">Saída</th>
-                               <th style="width:25%;">Motivo</th>
-                               <th style="width:10%;" class="disabled-sorting text-right">Resgatar</th>
-                           </tr>
-                       </tfoot>
                        <tbody>
                         {% for ev in evasao %}
                             <tr>
-                                <td>1</td>
+                                <td>{{forloop.counter}}</td>
                                 <td>{{ev.name}}</td>
                                 <td>{{ev.leader}}</td>
                                 <td>{{ev.date_delete}}</td>

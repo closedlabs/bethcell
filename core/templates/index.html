@@ -1,14 +1,10 @@
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-	<meta charset="UTF-8">
-	<title>Document</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block title %}
+BethCell - Lista de Pastores
+{% endblock title %}
 	{% for l in leader  %}
 		<h3>Pastores</h3>
 		<a href="{% url 'lista_filhos' l.pk %}"><b>{{l|upper}}</b></a>
 	{% endfor %}
-</body>
-</html>
+{% block container %}
