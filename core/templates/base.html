@@ -38,7 +38,9 @@
              color: white;
              text-align: left;
              font-size: 17px;
-             padding-left: 10px;                 
+             padding-left: 10px; 
+             padding-top: 3px;   
+             height:30px;                 
         }
         .leader{
              background-color: #00BFFF; 
@@ -46,13 +48,15 @@
              color: white;
              text-align: left;
              font-size: 17px;
-             padding-left: 10px;                 
+             padding-left: 10px;   
+             padding-top: 3px;   
+             height:30px;              
         }
     </style>
 </head>
 
 
-<body>
+<body class="sidebar-mini">
     <div class="wrapper">
         <div class="sidebar" data-active-color="rose" data-background-color="black" data-image="{% static "img/sidebar-1.jpg" %}">
     <!--
@@ -62,11 +66,11 @@
     -->
 
     <div class="logo">
-        <a href="index.html" class="simple-text logo-mini">
+        <a href="{% url 'dashboard' %}" class="simple-text logo-mini">
             BC
         </a>
 
-        <a href="index.html" class="simple-text logo-normal">
+        <a href="{% url 'dashboard' %}" class="simple-text logo-normal">
             BethCell
         </a>
     </div>

@@ -230,5 +230,155 @@ $(document).ready(function() {
         $('.card .material-datatables label').addClass('form-group');
     });
 
- 
 
+ ///// Calendario birth leader
+$(document).ready(function() {
+
+$('#id_birth').daterangepicker({
+  singleDatePicker: true,
+  showDropdowns: true,
+  "locale": {
+    "format": "DD/MM/YYYY",
+    "separator": " - ",
+    "applyLabel": "Aplicar",
+    "cancelLabel": "Cancelar",
+    "fromLabel": "De",
+    "toLabel": "Até",
+    "customRangeLabel": "Custom",
+    "daysOfWeek": [
+    "Dom",
+    "Seg",
+    "Ter",
+    "Qua",
+    "Qui",
+    "Sex",
+    "Sáb"
+    ],
+    "monthNames": [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro"
+    ],
+    "firstDay": 0
+  }});
+
+$('#id_conversion_date').daterangepicker({
+  singleDatePicker: true,
+  showDropdowns: true,
+  "locale": {
+    "format": "DD/MM/YYYY",
+    "separator": " - ",
+    "applyLabel": "Aplicar",
+    "cancelLabel": "Cancelar",
+    "fromLabel": "De",
+    "toLabel": "Até",
+    "customRangeLabel": "Custom",
+    "daysOfWeek": [
+    "Dom",
+    "Seg",
+    "Ter",
+    "Qua",
+    "Qui",
+    "Sex",
+    "Sáb"
+    ],
+    "monthNames": [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro"
+    ],
+    "firstDay": 0
+  }});
+$('#id_meeting_date').daterangepicker({
+  singleDatePicker: true,
+  showDropdowns: true,
+  "locale": {
+    "format": "DD/MM/YYYY",
+    "separator": " - ",
+    "applyLabel": "Aplicar",
+    "cancelLabel": "Cancelar",
+    "fromLabel": "De",
+    "toLabel": "Até",
+    "customRangeLabel": "Custom",
+    "daysOfWeek": [
+    "Dom",
+    "Seg",
+    "Ter",
+    "Qua",
+    "Qui",
+    "Sex",
+    "Sáb"
+    ],
+    "monthNames": [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro"
+    ],
+    "firstDay": 0
+  }});
+$('#id_date_batismo').daterangepicker({
+  singleDatePicker: true,
+  showDropdowns: true,
+  "locale": {
+    "format": "DD/MM/YYYY",
+    "separator": " - ",
+    "applyLabel": "Aplicar",
+    "cancelLabel": "Cancelar",
+    "fromLabel": "De",
+    "toLabel": "Até",
+    "customRangeLabel": "Custom",
+    "daysOfWeek": [
+    "Dom",
+    "Seg",
+    "Ter",
+    "Qua",
+    "Qui",
+    "Sex",
+    "Sáb"
+    ],
+    "monthNames": [
+    "Janeiro",
+    "Fevereiro",
+    "Março",
+    "Abril",
+    "Maio",
+    "Junho",
+    "Julho",
+    "Agosto",
+    "Setembro",
+    "Outubro",
+    "Novembro",
+    "Dezembro"
+    ],
+    "firstDay": 0
+  }});
+
+
+  });
