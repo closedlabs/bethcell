@@ -161,12 +161,12 @@
 
                             {% for membro in celula.discipulo_set.all %}                                          
                             <tr>
-                                <td>{{membro.id}}</td>
+                                <td>{{forloop.counter}}</td>
                                 <td><a href="frequencia_cel.html">{{membro.name|title}}</a></td>
                                 <td>{{membro.leader}}</td>
-                                <td>{{membro.get_ministry_display}}</td>
+                                <td>{{membro.get_ladder_display}}
                                 <td>{{membro.telephone}}</td>
-                                <td>{{membro.schooling}}</td>
+                                <td>{{membro.get_schooling_display}}</td>
                                 <td class="td-actions text-right">
                                     <a href="{% url 'discipulo_update' membro.slug %}" rel="tooltip" class="btn btn-success btn-round">
                                         <i class="material-icons">edit</i>

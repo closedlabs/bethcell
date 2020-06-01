@@ -14,6 +14,7 @@ class CelulaForm(forms.ModelForm):
             'cell_type': forms.Select(attrs={'class':'selectpicker','data-style':'select-with-transition','data-size':7,'required':'true'}),
             'created_at':forms.DateInput(attrs={'class':'form-control','required':'true'}),
             'meeting_day':forms.Select(attrs={'class':'selectpicker','data-style':'select-with-transition','data-size':7}),
+            'cep': forms.TextInput(attrs={'class': 'form-control'}),
             'uf': forms.Select(attrs={'class':'selectpicker',
                 'data-style':'select-with-transition','data-size':7,'data-live-search':'true','required':'true'}),
             'street': forms.TextInput(attrs={'class': 'form-control'}),
