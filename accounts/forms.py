@@ -33,6 +33,8 @@ class CustomUserCreationForm(UserCreationForm):
         super(CustomUserCreationForm, self).__init__(*args, **kwargs)
         self.fields['password1'].widget = forms.PasswordInput(attrs={'class': 'form-control'})
         self.fields['password2'].widget = forms.PasswordInput(attrs={'class': 'form-control',})  
+        self.fields['leader'].queryset = Leader.objects.filter(ministry='LG')
+
 
 class CustomUserChangeForm(UserChangeForm):
 
