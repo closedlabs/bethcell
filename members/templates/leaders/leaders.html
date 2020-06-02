@@ -59,32 +59,27 @@
                         <table id="datatables" class="table table-striped table-no-bordered table-hover" cellspacing="0" width="100%" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th style="width:5%;">Nº</th>
-                                    <th style="width:30%;">Nome</th>
-                                    <th style="width:17%;">Data/Nascimento</th>
-                                    <th style="width:15%;">Telefone</th>
-                                    <th style="width:18%;">e-mail</th>
-                                    <th style="width:15%;" class="td-actions text-right">Ações</th>
+                                    <th width="5%">Nº</th>
+                                    <th width="30%">Nome</th>
+                                    <th width="10%">Dt/Nascimento</th>
+                                    <th width="5%">Idade</th>
+                                    <th width="5%">Telefone</th>
+                                    <th width="30%">e-mail</th>
+                                    <th width="15%">Geração</th>
+                                    <th class="td-actions text-right">Ações</th>
                                 </tr>
                             </thead>
-                            <tfoot>
-                                <tr>
-                                    <th style="width:5%;">Nº</th>
-                                    <th style="width:30%;">Nome</th>
-                                    <th style="width:17%;">Data/Nascimento</th>
-                                    <th style="width:15%;">Telefone</th>
-                                    <th style="width:18%;">e-mail</th>
-                                    <th style="width:15%;" class="disabled-sorting text-right">Ações</th>
-                                </tr>
-                            </tfoot>
+
                             <tbody>
                                 {% for lider in lideres %}
                                     <tr>
-                                    <td>{{forloop.counter}}</td>
-                                    <td>{{lider.name|title}}</td>
-                                    <td>{{lider.birth|date:'d/m/Y'}}</td>
-                                    <td>{{lider.telephone}}</td>
-                                    <td>{{lider.email}}</td>
+                                    <td width="5%">{{forloop.counter}}</td>
+                                    <td width="30%">{{lider.name|title}}</td>
+                                    <td width="10%">{{lider.birth|date:'d/m/Y'}}</td>
+                                    <td width="5%"></td>
+                                    <td width="5%">{{lider.telephone}}</td>
+                                    <td width="30%">{{lider.email}}</td>
+                                    <td width="15%">{{lider.lider_de_rede}}</td>
                                     <td class="td-actions text-right">
                                         <a  href="{% url 'leader_detail' lider.slug %}"type="button" rel="tooltip" class="btn btn-info btn-round"title="Ver Detalhes">
                                             <i class="material-icons">person</i>

@@ -1,167 +1,115 @@
 {% extends "base.html" %}
 {% block container %}
 <div class="col-md-12">
-    <div class="card">
-        <div class="card-header card-header-text" data-background-color="rose">
-                                                    <h4 class="card-title">Cadastrar Célula</h4>
-                                                    <p class="category">* Campos obrigatórios!</p>
-                                                </div>
-        <div class="card-content">  
-            <form method="POST" id="form_celula">
-                {% csrf_token %}
-                <h3 class="cell">Identificação</h3>
-                <div class="row">
-                    <div class="col-md-5">                     
-                        <div class="form-group">
-                            <label class="control-bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nome da Célula</font></font></label>
-                            {{form.name}}                            
-                        </div>
-                    </div>
-                    <div class="col-md-5" id="leader">   
-                        <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">* Líder</font></font></label>
-                        {{form.leader}}
-                        
-                    </div>
-                     <div class="col-md-2" id="cell_type">   
-                        <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">* Celula de</font></font></label>
-                        {{form.cell_type}}
-                        
-                    </div>
-                </div>
-                <div class="row">
-                                        <div class="col-md-6" id="coleader">
-                        <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">* Colider</font></font></label>
-                        {{form.coleader}}                     
-                    </div>                   
-                   <div class="col-md-3" id="created_at" >
-                        <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">* Abertura</font></font></label>
-                        
-                        {{form.created_at}}
-                        
-                    </div>
-                     <div class="col-md-3" id="meeting_day">
-                        <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">* Dia de Reunião</font></font></label>
-                      
-                        {{form.meeting_day}}
-                       
-                    </div>
-                </div>
-                 <h3 class="cell">Endereço</h3>
-                <div class="row">
-                    <div class="col-md-2" id="uf">
-                        <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">* Estado</font></font></label>
-                            {{form.uf}}
-                           
-                    </div>
-                                        <div class="col-md-6" id="city">
-                        <div class="form-group label-floating is-empty">
-                            <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">* Cidade</font></font></label>
-                            
-                            {{form.city}}
-                           
-                        </div>
-                    </div>
-                                        <div class="col-md-4" id="neighborhood">
-                        <div class="form-group label-floating is-empty">
-                            <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">* Bairro</font></font></label>
-                           
-                            {{form.neighborhood}}
-                        </div>
-                    </div>
-                </div>
-                 <div class="row">
-                    <div class="col-md-6">
-                        <div class="form-group label-floating is-empty">
-                            <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Rua</font></font></label>
-                           
-                            {{form.street}}
-                           
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group label-floating is-empty">
-                            <label class="bmd-label-floating"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Nª</font></font></label>
-                            
-                            {{form.number}}
-                           
-                        </div>
-                    </div>
-
-
-   
-                </div>  
-                <button type="submit" class="btn btn-success btn-raised pull-right" id="submitButton"><font style="vertical-align: inherit;">Salvar</font></button>
-            </form>
-        </div>
+  <div class="card">
+    <div class="card-header card-header-text" data-background-color="rose">
+      <h4 class="card-title">Cadastrar Célula</h4>
+      <p class="category">* Campos obrigatórios!</p>
     </div>
+    <div class="card-content">  
+      <form method="POST" id="form_celula">
+        {% csrf_token %}
+        <h3 class="cell">Identificação</h3>
+        <div class="row">
+          <div class="col-md-5">                     
+            <div class="form-group">
+              <label class="control-bmd-label-floating">Nome da Célula</label>
+              {{form.name}}                            
+            </div>
+          </div>
+          <div class="col-md-5" id="leader">   
+            <label class="bmd-label-floating">* Líder</label>
+            {{form.leader}}
+          </div>
+          <div class="col-md-2" id="cell_type">   
+            <label class="bmd-label-floating">* Celula de</label>
+            {{form.cell_type}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6" id="coleader">
+            <label class="bmd-label-floating">* Colider</label>
+            {{form.coleader}}                     
+          </div>                   
+          <div class="col-md-3" id="created_at" >
+            <label class="bmd-label-floating">* Abertura</label>
+            {{form.created_at}}
+          </div>
+          <div class="col-md-3" id="meeting_day">
+            <label class="bmd-label-floating">* Dia de Reunião</label>
+            {{form.meeting_day}}
+          </div>
+        </div>
+        <h3 class="cell">Endereço</h3>
+        <div class="row">
+          <div class="col-md-2" id="cep">
+            <label class="bmd-label-floating">* CEP</label>
+            {{form.cep}}                           
+          </div>
+          <div class="col-md-2" id="uf">
+            <label class="bmd-label-floating">* Estado</label>
+            {{form.uf}}                           
+          </div>
+          <div class="col-md-5" id="city">
+            <div class="form-group label-floating is-empty">
+              <label class="bmd-label-floating">* Cidade</label>
+              {{form.city}}                           
+            </div>
+          </div>
+          <div class="col-md-3" id="neighborhood">
+            <div class="form-group label-floating is-empty">
+              <label class="bmd-label-floating">* Bairro</label>
+              {{form.neighborhood}}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group label-floating is-empty">
+              <label class="bmd-label-floating">Rua</label>
+              {{form.street}}                           
+            </div>
+          </div>
+          <div class="col-md-2">
+            <div class="form-group label-floating is-empty">
+              <label class="bmd-label-floating">Nª</label>
+              {{form.number}}
+            </div>
+          </div>   
+        </div>  
+        <button type="submit" class="btn btn-success btn-raised btn-xs pull-right" id="submitButton">Salvar</button>
+      </form>
+    </div>
+  </div>
 </div>
 <script type="text/javascript">
 $(document).ready(function() {
   $('#submitButton').on('click',function(){
-  $('#form_celula').validate({
-    rules: {
-      leader: { required: true, },
-      coleader: { required: true,},
-      cell_type: { required: true,},
-      created_at: { required: true,},
-      meeting_day: { required: true,},
-      uf: { required: true,},
-      city: { required: true,},
-      neighborhood: { required: true,},        
-    },
-    messages: {
-      leader: { required: '<span class="text-danger" style="font-size:11px;">* Obrigatório</span>' },
-      coleader: { required: '<span class="text-danger" style="font-size:11px;">* Obrigatório</span>' },
-      cell_type: { required: '<span class="text-danger" style="font-size:11px;">* Obrigatório</span>' },
-      created_at: { required: '<span class="text-danger" style="font-size:11px;">* Obrigatório</span>' },
-      meeting_day: { required: '<span class="text-danger" style="font-size:11px;">* Obrigatório</span>' },
-      uf: { required: '<span class="text-danger" style="font-size:11px;">* Obrigatório</span>' },
-      city: { required: '<span class="text-danger" style="font-size:11px;">* Obrigatório</span>' },
-      neighborhood: { required: '<span class="text-danger" style="font-size:11px;">* Obrigatório</span>' },     
-    },
+    $('#form_celula').validate({
+      rules: {
+        leader: { required: true, },
+        coleader: { required: true,},
+        cell_type: { required: true,},
+        created_at: { required: true,},
+        meeting_day: { required: true,},
+        cep: { required: true,},
+        uf: { required: true,},
+        city: { required: true,},
+        neighborhood: { required: true,},        
+      },
+      messages: {
+        leader: { required: '<span class="text-danger" style="font-size:11px;">* Obrigatório</span>' },
+        coleader: { required: '<span class="text-danger" style="font-size:11px;">* Obrigatório</span>' },
+        cell_type: { required: '<span class="text-danger" style="font-size:11px;">* Obrigatório</span>' },
+        created_at: { required: '<span class="text-danger" style="font-size:11px;">* Obrigatório</span>' },
+        meeting_day: { required: '<span class="text-danger" style="font-size:11px;">* Obrigatório</span>' },
+        cep: { required: '<span class="text-danger" style="font-size:11px;">* Obrigatório</span>' },
+        uf: { required: '<span class="text-danger" style="font-size:11px;">* Obrigatório</span>' },
+        city: { required: '<span class="text-danger" style="font-size:11px;">* Obrigatório</span>' },
+        neighborhood: { required: '<span class="text-danger" style="font-size:11px;">* Obrigatório</span>' },     
+      },
+    });
   });
 });
-
-
-$('#id_created_at').daterangepicker({
-  singleDatePicker: true,
-  showDropdowns: true,
-  "locale": {
-    "format": "DD/MM/YYYY",
-    "separator": " - ",
-    "applyLabel": "Aplicar",
-    "cancelLabel": "Cancelar",
-    "fromLabel": "De",
-    "toLabel": "Até",
-    "customRangeLabel": "Custom",
-    "daysOfWeek": [
-    "Dom",
-    "Seg",
-    "Ter",
-    "Qua",
-    "Qui",
-    "Sex",
-    "Sáb"
-    ],
-    "monthNames": [
-    "Janeiro",
-    "Fevereiro",
-    "Março",
-    "Abril",
-    "Maio",
-    "Junho",
-    "Julho",
-    "Agosto",
-    "Setembro",
-    "Outubro",
-    "Novembro",
-    "Dezembro"
-    ],
-    "firstDay": 0
-  }});
-
-
-
-  });
 </script>
 {% endblock container %}

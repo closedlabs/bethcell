@@ -16,6 +16,7 @@ class Celula(models.Model):
     created_at    = models.DateField(verbose_name='Data de Abertura')
     meeting_day   = models.TextField(verbose_name='Dia da Reunião',choices=DIAS)
     #endereço
+    cep           = models.CharField(verbose_name='CEP', max_length=10)
     uf            = models.CharField('UF',max_length=2, choices=UF,blank=True)
     city          = models.CharField(max_length=50,verbose_name='Cidade',blank=True)
     street        = models.CharField('Rua',max_length=100,blank=True)

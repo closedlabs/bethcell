@@ -10,6 +10,9 @@ from .forms import CustomUserCreationForm,CustomUserChangeForm
 from members.models import Leader
 from core.models import Celula
 from .models import CustomUser
+
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 '''
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 +                           Views de Usuarios
@@ -37,12 +40,28 @@ class SignUpView(CreateView):
     success_url = reverse_lazy('login')
     template_name = 'signup.html'
 
-class UserUpdateView(UpdateView):
-    model = CustomUser
-    template_name = "user/update.html"
-    form_class = CustomUserChangeForm
-    success_url = '/leaders'
-    success_message = 'Dados Atualizos Com Sucesso!!!!'
+def change_password_user(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Sua senha foi atualizada com sucesso!')
+            return redirect('leaders')
+        else:
+            messages.error(request, 'por favor Corrija o erro abaixo.')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request,  "user/update.html", {
+        'form': form
+    })
 
-    def get_object(self, queryset=None):
-        return self.request.user
+# class UserUpdateView(SuccessMessageMixin,UpdateView):
+#     model = CustomUser
+#     template_name = "user/update.html"
+#     form_class = CustomUserChangeForm
+#     success_url = 'update/'
+#     success_message = 'Dados Atualizos Com Sucesso!!!!'
+
+#     def get_object(self, queryset=None):
+#         return self.request.user

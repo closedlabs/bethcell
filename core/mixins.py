@@ -13,7 +13,7 @@ class DashboardMixin(object):
             context['evasao_count']     =  Evasao.objects.all().count()
 
         else:
-            leader = Leader.objects.get(user=self.request.user.pk,tipo='LG')
+            leader = Leader.objects.get(user=self.request.user.pk,ministry='LG')
             context['lideres_count']     = Leader.objects.filter(lider_de_rede=leader).count()
             context['celulas_count']     = Celula.objects.filter(lider__lider_de_rede=leader).count()
             context['discipulos_count']  = Discipulo.objects.filter(lider__lider_de_rede=leader).count()
