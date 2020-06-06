@@ -4,6 +4,9 @@
     BethCell - Lideres
 {% endblock title %}
 {% block container %}
+<div class="content">
+  <div class="container-fluid">
+
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -27,28 +30,18 @@
                     
                      <form method="GET"name="form_search">
                         <div class="row">
-                            <div class="col-md-3 col-sm-3">
+
+                            <div class="col-md-2 col-sm-3 pull-right">
+                                <button type="submit" class="btn btn-primary  btn-round"><i class="material-icons">search</i></button>
+                            </div>
+
+                             <div class="col-md-3 col-sm-3 pull-right">
                                 <input type="text"class="form-control" name="name" placeholder="Nome do Líder"value="{{request.GET.name}}">
                             </div> 
-                            <div class="col-md-2">
-                                <select class="selectpicker" name="sex"data-style="select-with-transition" title="sexo" data-size="7">
-                                    <option value=""disabled selected>Sexo (Todos)</option>
-                                    <option value="M">Masculino</option>
-                                    <option value="F">Feminino</option>
-                                </select>
+                            <div class="col-md-7 col-sm-3">
+                             
                             </div>
-                            <div class="col-md-3">
-                                <select class="selectpicker" name="perfil"data-style="select-with-transition" title="perfil" data-size="7">
-                                    <option value=""disabled selected>Perfil (Todos)</option>
-                                    <option value="HO">Homens</option>
-                                    <option value="MU">Mulheres</option>
-                                    <option value="JO">Jovens</option>
-                                    <option value="MO">Moças</option>
-                                </select>
-                            </div>
-                            <div class="col-md-1 col-sm-1">
-                                <button type="submit" class="btn btn-primary pull-right btn-round"><i class="material-icons">search</i></button>
-                            </div>
+                           
                         </div>
                     </form>
                     <div class="material-datatables">
@@ -67,23 +60,23 @@
                             </thead>
 
                             <tbody>
-                                {% for lider in lideres %}
+                                {% for leader in leaders %}
                                     <tr>
                                     <td width="5%">{{forloop.counter}}</td>
-                                    <td width="30%">{{lider.name|title}}</td>
-                                    <td width="10%">{{lider.birth|date:'d/m/Y'}}</td>
+                                    <td width="30%">{{leader.name|title}}</td>
+                                    <td width="10%">{{leader.birth|date:'d/m/Y'}}</td>
                                     <td width="5%"></td>
-                                    <td width="5%">{{lider.telephone}}</td>
-                                    <td width="30%">{{lider.email}}</td>
-                                    <td width="15%">{{lider.lider_de_rede}}</td>
+                                    <td width="5%">{{leader.telephone}}</td>
+                                    <td width="30%">{{leader.email}}</td>
+                                    <td width="15%">{{leader.leader_de_rede}}</td>
                                     <td class="td-actions text-right">
-                                        <a  href="{% url 'leader_detail' lider.slug %}"type="button" rel="tooltip" class="btn btn-info btn-round"title="Ver Detalhes">
+                                        <a  href="{% url 'leader_detail' leader.slug %}"type="button" rel="tooltip" class="btn btn-info btn-round"title="Ver Detalhes">
                                             <i class="material-icons">person</i>
                                         </a>
-                                        <a  href="{% url 'leader_update' lider.slug %}"type="button" rel="tooltip" class="btn btn-success btn-round"title="Atualizar Dados">
+                                        <a  href="{% url 'leader_update' leader.slug %}"type="button" rel="tooltip" class="btn btn-success btn-round"title="Atualizar Dados">
                                             <i class="material-icons">edit</i>
                                         </a>
-                                        <a href="{% url 'leader_delete' lider.slug %}" type="button" rel="tooltip" class="btn btn-danger btn-round"title="Excluir..">
+                                        <a href="{% url 'leader_delete' leader.slug %}" type="button" rel="tooltip" class="btn btn-danger btn-round"title="Excluir..">
                                             <i class="material-icons">close</i>
                                         </a>
                                     </td>
@@ -93,7 +86,33 @@
                         </table>
                     </div>
                 </div>
+                   <ul class="pagination">
+                {% if leaders.has_previous %}
+                <li><a href="?page={{ leaders.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+                {% endif %}
+                 {% for i in leaders.paginator.page_range %}
+                    {% if leaders.number == i %}
+                      <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                      <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                {% if leaders.has_next %}
+                  <li><a href="?page={{ leaders.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+                {% endif %}
+              </ul>
             </div>
+            
         </div>
+
     </div> <!-- end col-md-12 -->
+      
+  </div>
+ 
+    </div>   
+         
 {% endblock container %}

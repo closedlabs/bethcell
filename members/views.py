@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
+from django.core.paginator import Paginator
 from django.views.generic import TemplateView,DetailView,CreateView,UpdateView,DeleteView
 from members.models import Leader,Discipulo
 from django.contrib import messages
@@ -15,68 +16,25 @@ def lista_lider(request):
     query = Leader.objects.filter(tipo='PR')
     return render(request,'index.html',{'leader':query})
 
-"""
-def lista_filhos(request,pk):
-    query = Lider.objects.filter(lider_de_rede=pk)
-    return render(request,'filhos.html',{'filhos':query})
-"""
-
-# def recibos(request):
-#     #variavel para distiguir atendimentos por profissional
-#     prof = ""
-#     #variaveis para saber o tipo de usuario logado no template
-#     pf = Profissional.prof_objects.filter(user=request.user,tipo=2)
-#     if pf.exists():
-#         prof = Profissional.prof_objects.get(user=request.user,tipo=2)
-#     else:
-#         pass
-    
-#     if request.GET.get('date_ranger'):
-#         #se buscas
-#         date_range          = request.GET.get('date_ranger')
-#         start_date_string   = datetime.strptime(date_range.split(' / ')[0],'%d/%m/%Y').strftime('%Y-%m-%d')
-#         end_date_string     = datetime.strptime(date_range.split(' / ')[1],'%d/%m/%Y').strftime('%Y-%m-%d')
-#         profissional_search = request.GET.get('profissional')
-#         forma_pagamento     = request.GET.get('forma_pagamento')
-#         paciente            = request.GET.get('paciente')
-#         if prof:
-#             #se profissional estiver logado ele exibe a busca conforme ele
-#             conta = ReciboPago.objects.filter(data_upload__date__range=(
-#                 start_date_string,end_date_string),profissional_id=prof.id).order_by('-data_upload')
-#             #reatribui o valor do contexto com o novo valor
-#             contas     = Paginator(conta,25).get_page(request.GET.get('page'))
-#         else:
-#             #se admin estiver logado
-#             conta = ReciboPago.objects.filter(data_upload__date__range=(
-#                 start_date_string,end_date_string), profissional__nome__icontains=profissional_search,
-#             ).order_by('-data_upload')
-#             #reatribui o valor do contexto com o novo valor
-#             contas     = Paginator(conta,25).get_page(request.GET.get('page'))
-#     else:
-#         #exibe todos os atendimentos quando abrir a pagina conforme o tipo de user logado
-#         if prof:
-#             conta      = ReciboPago.objects.select_related('profissional').filter(
-#                 profissional_id=prof.id).order_by('-data_upload')
-#             #lista de recibos pagos profissional
-#             contas     = Paginator(conta,25).get_page(request.GET.get('page'))
-#         else:
-#             conta      = ReciboPago.objects.select_related('profissional').order_by('-data_upload')
-#             #lista de recibos pagos admin
-#             contas     = Paginator(conta,25).get_page(request.GET.get('page'))
-
-#     return render(request,'contas_pagar/recibos_pagos.html',{'lista_dados':contas})
-
 
 def leaders(request):
-    lideres = ''
-    if request.GET.get('name'):
-        name            = request.GET.get('name')
-        sex             = request.GET.get('sex')
-        lideres = Leader.objects.filter(name__icontains=name,sex=sex)
-    else:
+    if request.user.is_superuser:
         lideres = Leader.objects.all().exclude(user__username='admin')
+    else:
+        leader  = Leader.objects.get(user=request.user.pk,ministry='LG')
+        lideres = Leader.objects.filter(lider_de_rede=leader)
+    paginator = Paginator(lideres, 12) 
+    page_number = request.GET.get('page')
+   
+    if request.GET:
+        name          = request.GET.get('name')
+        if name:
+            lideres   = Leader.objects.filter(name__icontains=name,) 
+            paginator = Paginator(lideres, 12) 
+        
+    page_obj = paginator.get_page(page_number)
     context = {
-        'lideres':lideres
+        'leaders':page_obj
     }
     return render(request,'leaders/leaders.html',context)
 
