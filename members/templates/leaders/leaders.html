@@ -24,15 +24,11 @@
                             </div>
                         </div>
                     </div>
-                     <form method="GET"name="search">
+                    
+                     <form method="GET"name="form_search">
                         <div class="row">
                             <div class="col-md-3 col-sm-3">
-                                <div class="form-group">
-                                    <input name="date_ranger"class="form-control"required>
-                                </div>
-                            </div>
-                            <div class="col-md-3 col-sm-3">
-                                <input type="text"class="form-control" name="leader" placeholder="Nome do Líder">
+                                <input type="text"class="form-control" name="name" placeholder="Nome do Líder"value="{{request.GET.name}}">
                             </div> 
                             <div class="col-md-2">
                                 <select class="selectpicker" name="sex"data-style="select-with-transition" title="sexo" data-size="7">

@@ -20,18 +20,79 @@ def lista_filhos(request,pk):
     query = Lider.objects.filter(lider_de_rede=pk)
     return render(request,'filhos.html',{'filhos':query})
 """
+
+# def recibos(request):
+#     #variavel para distiguir atendimentos por profissional
+#     prof = ""
+#     #variaveis para saber o tipo de usuario logado no template
+#     pf = Profissional.prof_objects.filter(user=request.user,tipo=2)
+#     if pf.exists():
+#         prof = Profissional.prof_objects.get(user=request.user,tipo=2)
+#     else:
+#         pass
+    
+#     if request.GET.get('date_ranger'):
+#         #se buscas
+#         date_range          = request.GET.get('date_ranger')
+#         start_date_string   = datetime.strptime(date_range.split(' / ')[0],'%d/%m/%Y').strftime('%Y-%m-%d')
+#         end_date_string     = datetime.strptime(date_range.split(' / ')[1],'%d/%m/%Y').strftime('%Y-%m-%d')
+#         profissional_search = request.GET.get('profissional')
+#         forma_pagamento     = request.GET.get('forma_pagamento')
+#         paciente            = request.GET.get('paciente')
+#         if prof:
+#             #se profissional estiver logado ele exibe a busca conforme ele
+#             conta = ReciboPago.objects.filter(data_upload__date__range=(
+#                 start_date_string,end_date_string),profissional_id=prof.id).order_by('-data_upload')
+#             #reatribui o valor do contexto com o novo valor
+#             contas     = Paginator(conta,25).get_page(request.GET.get('page'))
+#         else:
+#             #se admin estiver logado
+#             conta = ReciboPago.objects.filter(data_upload__date__range=(
+#                 start_date_string,end_date_string), profissional__nome__icontains=profissional_search,
+#             ).order_by('-data_upload')
+#             #reatribui o valor do contexto com o novo valor
+#             contas     = Paginator(conta,25).get_page(request.GET.get('page'))
+#     else:
+#         #exibe todos os atendimentos quando abrir a pagina conforme o tipo de user logado
+#         if prof:
+#             conta      = ReciboPago.objects.select_related('profissional').filter(
+#                 profissional_id=prof.id).order_by('-data_upload')
+#             #lista de recibos pagos profissional
+#             contas     = Paginator(conta,25).get_page(request.GET.get('page'))
+#         else:
+#             conta      = ReciboPago.objects.select_related('profissional').order_by('-data_upload')
+#             #lista de recibos pagos admin
+#             contas     = Paginator(conta,25).get_page(request.GET.get('page'))
+
+#     return render(request,'contas_pagar/recibos_pagos.html',{'lista_dados':contas})
+
+
 def leaders(request):
-    if request.user.is_superuser:
-        lideres = Leader.objects.all().exclude(user__username='admin')
+    lideres = ''
+    if request.GET.get('name'):
+        name            = request.GET.get('name')
+        sex             = request.GET.get('sex')
+        lideres = Leader.objects.filter(name__icontains=name,sex=sex)
     else:
-        usuario = request.user.pk
-        leader = Leader.objects.get(user=usuario,ministry='LG')
-        lideres = Leader.objects.filter(lider_de_rede=leader)
-        print(lideres, "Esse é um Lider")
+        lideres = Leader.objects.all().exclude(user__username='admin')
     context = {
         'lideres':lideres
     }
     return render(request,'leaders/leaders.html',context)
+
+
+# def leaders(request):
+#     if request.user.is_superuser:
+#         lideres = Leader.objects.all().exclude(user__username='admin')
+#     else:
+#         usuario = request.user.pk
+#         leader = Leader.objects.get(user=usuario,ministry='LG')
+#         lideres = Leader.objects.filter(lider_de_rede=leader)
+#         print(lideres, "Esse é um Lider")
+#     context = {
+#         'lideres':lideres
+#     }
+#     return render(request,'leaders/leaders.html',context)
 
 def add_leader(request):
     if request.method == 'POST':
