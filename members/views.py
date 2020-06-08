@@ -6,6 +6,7 @@ from django.contrib import messages
 from members.forms import DiscipuloForm,LeaderForm
 from accounts.forms import CustomUserCreationForm
 from django.contrib.messages.views import SuccessMessageMixin
+
 '''
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 +                         VIEWS DE LIDERES DE CÈLULA
@@ -118,8 +119,19 @@ def discipulos(request):
         usuario    = request.user.pk
         leader      = Leader.objects.get(user=usuario,ministry='LG')
         discipulos = Discipulo.objects.filter(lider__lider_de_rede=leader)
+    paginator = Paginator(discipulos, 12) 
+    page_number = request.GET.get('page')
+   
+    if request.GET:
+        name          = request.GET.get('name')
+        if name:
+            discipulos   = Discipulo.objects.filter(name__icontains=name) 
+            paginator = Paginator(discipulos, 12) 
+
+        
+    page_obj = paginator.get_page(page_number)
     context = {
-        'discipulos':discipulos
+        'discipulos':page_obj
     }
     return render(request,'disciples/disciples.html',context)
 

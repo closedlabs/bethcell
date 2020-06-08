@@ -4,6 +4,7 @@ from core.choices import LIDER_CHOICES,SEXO_CHOICES,CATEGORIA_CHOICES,ESCOLARIDA
 from core.utils import unique_slug_generator
 from django.db.models.signals import pre_save,post_save,post_delete
 from django.dispatch import receiver
+from datetime import datetime
 
 class Member(models.Model):
     #dados pessoais
@@ -34,6 +35,9 @@ class Member(models.Model):
     complement    = models.CharField(max_length=50,blank=True)
     cep            = models.CharField('CEP',max_length=20,blank=True)
     exited           = models.CharField(verbose_name='Motivo*',max_length=40,blank=True,null=True)
+
+    def get_idade(self):
+        return int((datetime.now().date()-self.birth).days/365.25)
 
     class Meta:
         abstract = True
