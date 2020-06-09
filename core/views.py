@@ -1,5 +1,5 @@
-from django.shortcuts import render
 from django.shortcuts import render,get_object_or_404,redirect
+from django.core.paginator import Paginator
 from core.models import Celula, Evasao
 from members.models import Leader,Discipulo
 from django.db.models import Count
@@ -54,8 +54,18 @@ def celulas(request):
         usuario = request.user.pk
         leader  = Leader.objects.get(user=usuario,tipo='LG')
         celulas = Celula.objects.filter(lider__lider_de_rede=leader)
-    context     = {
-        'celulas':celulas
+    paginator = Paginator(celulas, 12) 
+    page_number = request.GET.get('page')
+   
+    if request.GET:
+        name          = request.GET.get('name')
+        if name:
+            celulas   = Celula.objects.filter(name__icontains=name,) 
+            paginator = Paginator(celulas, 12) 
+        
+    page_obj = paginator.get_page(page_number)
+    context = {
+        'celulas':page_obj
     }
     return render(request,'celulas/celulas.html',context)
 
