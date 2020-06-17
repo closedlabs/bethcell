@@ -84,7 +84,12 @@ class LeaderDeleteView(DeleteView):
     model         = Leader
     template_name = "leaders/leader_delete.html"
     success_url   = '/leaders'
+    success_message = 'Excluido com sucesso'
 
+    
+    def delete(self, request, *args, **kwargs):
+       messages.success(self.request, self.success_message)
+       return super(LeaderDeleteView, self).delete(request, *args, **kwargs)
 
 
 def leader_update(request,slug):
@@ -164,6 +169,7 @@ def discipulo_delete(request,slug):
         discipulo.exited = request.POST.get('motivo')
         discipulo.save()
         discipulo.delete()
+        messages.success(request, "Excluido Com Sucesso!")
         return redirect('discipulos')
     return render(request,'disciples/delete.html',{'form':form})
     

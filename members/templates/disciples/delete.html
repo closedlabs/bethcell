@@ -3,18 +3,19 @@
 {% block container %}
 
 <div class="row">
-	<div class="col-md-10 col-md-offset-1">
+	<div class="col-md-6">
 		<div class="card card-pricing">
 			<br>
 			<h3 class="card-title text-center">Deseja Relamente Deletar?</h3>
-			<form class="form" method="POST">
+			<form class="form" method="POST" id="form">
 				{% csrf_token %}
 				<div class="card-content">
 					<div class="icon icon-rose">
 						<i class="material-icons">delete</i>
 					</div>
-					<h5><b>Diga abaixo por Qual Motivo Ele Está Saindo da Igreja.</b></h5>
+					<h5>Informe o motivo da saída.</h5>
 					<select name="motivo"class="selectpicker"data-style='select-with-transition'data-size="7">
+						<option value="">Selecione uma Opção</option>
 						<option value="Discípulo não compareceu às consolidações">Discípulo não compareceu às consolidações</option>
 						<option value="Discípulo Viajou">Discípulo Viajou</option>
 						<option value="Enviado como Líder">Enviado como Líder</option>
@@ -24,10 +25,26 @@
 					</select>
 				</div>
 				<div class="footer text-center">
-					<button type="submit" class="btn btn-primary btn-round">Excluir</button><a href="#pablo" class="btn btn-rose btn-round">Cancelar</a>
+					<button type="submit" id="submitButton"class="btn btn-success btn-raised btn-xs">Confirmar</button><a href="#pablo" class="btn btn-danger btn-raised btn-xs">Cancelar</a>
 				</div>
 			</form>
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function() {
+    $('#submitButton').on('click',function(){
+        $('#form').validate({
+            rules: {
+                motivo: { required: true, },
+              
+            },
+            messages: {
+                motivo: { required: '<span class="text-danger" style="font-size:15px;">* Escolha uma Opção</span>' },
+               
+            },
+        });
+    });
+});
+</script>
 {% endblock %}

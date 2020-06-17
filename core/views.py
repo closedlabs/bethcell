@@ -98,11 +98,16 @@ class CelulaDetailView(SuccessMessageMixin,DetailView):
         context['trainee_formado']  = Discipulo.objects.filter(cell=self.object,ladder='N5').count()
         return context
 
-class CelulaDeleteView(DeleteView):
+class CelulaDeleteView(DeleteView,SuccessMessageMixin):
     model         = Celula
     template_name = "celulas/delete_celula.html"
     success_url   = '/celulas'
+    success_message = "Célula Excluida com Sucesso!"
 
+    def delete(self, request, *args, **kwargs):
+       messages.success(self.request, self.success_message)
+       return super(CelulaDeleteView, self).delete(request, *args, **kwargs)
+       
 def evasao(request):
     evasao = Evasao.objects.all()
     return render(request,'evasao/evasao.html',{'evasao':evasao})
