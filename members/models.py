@@ -36,8 +36,8 @@ class Member(models.Model):
     cep            = models.CharField('CEP',max_length=20,blank=True)
     exited           = models.CharField(verbose_name='Motivo*',max_length=40,blank=True,null=True)
 
-    def get_idade(self):
-        return int((datetime.now().date()-self.birth).days/365.25)
+    # def get_idade(self):
+    #     return int((datetime.now().date()-self.birth).days/365.25)
 
     class Meta:
         abstract = True

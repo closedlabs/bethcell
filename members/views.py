@@ -17,13 +17,17 @@ def lista_lider(request):
     query = Leader.objects.filter(tipo='PR')
     return render(request,'index.html',{'leader':query})
 
-
 def leaders(request):
+    usuario = request.user.pk
     if request.user.is_superuser:
         lideres = Leader.objects.all().exclude(user__username='admin')
-    else:
-        leader  = Leader.objects.get(user=request.user.pk,ministry='LG')
+    elif Leader.objects.filter(user=usuario,ministry='LG').exists():
+        leader  = Leader.objects.get(user=usuario,ministry='LG')
         lideres = Leader.objects.filter(lider_de_rede=leader)
+    elif Leader.objects.filter(user=usuario,ministry='LC').exists():
+        leader  = Leader.objects.get(user=usuario,ministry='LC')
+        lideres = Leader.objects.filter(user=usuario)
+
     paginator = Paginator(lideres, 12) 
     page_number = request.GET.get('page')
    
@@ -118,12 +122,16 @@ def lider_delete(request,pk):
 '''
 
 def discipulos(request):
+    usuario    = request.user.pk
     if request.user.is_superuser:
         discipulos = Discipulo.objects.all()
-    else:
-        usuario    = request.user.pk
+    elif Leader.objects.filter(user=usuario,ministry='LG').exists():
         leader      = Leader.objects.get(user=usuario,ministry='LG')
-        discipulos = Discipulo.objects.filter(lider__lider_de_rede=leader)
+        discipulos  = Discipulo.objects.filter(leader__lider_de_rede=leader)
+    elif Leader.objects.filter(user=usuario,ministry='LC').exists():
+        leader      = Leader.objects.get(user=usuario,ministry='LC')
+        discipulos  = Discipulo.objects.filter(leader=leader)
+
     paginator = Paginator(discipulos, 12) 
     page_number = request.GET.get('page')
    

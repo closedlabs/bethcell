@@ -48,12 +48,18 @@ class AniversariantesView(TemplateView):
 '''
 
 def celulas(request):
+    usuario = request.user.pk
     if request.user.is_superuser:
         celulas = Celula.objects.all()
-    else:
-        usuario = request.user.pk
-        leader  = Leader.objects.get(user=usuario,tipo='LG')
-        celulas = Celula.objects.filter(lider__lider_de_rede=leader)
+    elif Leader.objects.filter(user=usuario,ministry='LG').exists():
+      
+        leader  = Leader.objects.get(user=usuario,ministry='LG')
+        celulas = Celula.objects.filter(leader__lider_de_rede=leader)
+
+    elif Leader.objects.filter(user=usuario,ministry='LC').exists():
+        leader  = Leader.objects.get(user=usuario,ministry='LC')
+        celulas = Celula.objects.filter(leader=leader)
+
     paginator = Paginator(celulas, 12) 
     page_number = request.GET.get('page')
    
