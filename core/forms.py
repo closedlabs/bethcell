@@ -1,9 +1,15 @@
 from django import forms
 from core.models import Celula
+from members.models import Leader
 from core.choices import SEXO_CHOICES
 from django.core.exceptions import ValidationError
 
 class CelulaForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['leader'].queryset     = Leader.objects.exclude(user__username='admin')
+
     class Meta:
         model = Celula
         fields = '__all__'

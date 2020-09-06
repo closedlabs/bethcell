@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from core.choices import LIDER_CHOICES,SEXO_CHOICES
 from members.models import Leader
 
@@ -19,7 +20,7 @@ class CustomUserCreationForm(UserCreationForm):
         fields = (
             'username', 'first_name', 'last_name', 'password1', 
             'password2', 'email','is_cell_leader',
-            'is_generation_leader','is_teacher'
+            'is_generation_leader','is_teacher','sex','leader','ministry'
         )
         widgets = { 
             'username':forms.TextInput(attrs={'class':'form-control','required':'true'}),
@@ -34,8 +35,15 @@ class CustomUserCreationForm(UserCreationForm):
         super(CustomUserCreationForm, self).__init__(*args, **kwargs)
         self.fields['password1'].widget = forms.PasswordInput(attrs={'class': 'form-control'})
         self.fields['password2'].widget = forms.PasswordInput(attrs={'class': 'form-control',})  
-        self.fields['leader'].queryset = Leader.objects.filter(ministry='LG')
+        self.fields['leader'].queryset  = Leader.objects.filter(ministry='LG')
 
+    def clean(self):
+        leader = self.cleaned_data['leader']
+        situacao_ministerial = self.cleaned_data['ministry']
+        
+        if (situacao_ministerial != 'PR' and leader is None):
+            raise forms.ValidationError('Campo Obrigatorio')
+      
 
 class CustomUserChangeForm(UserChangeForm):
     password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
