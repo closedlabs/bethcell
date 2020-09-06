@@ -23,12 +23,12 @@ class Member(models.Model):
     meeting_date  = models.DateField(verbose_name='Data Do Encontro', blank=True, null=True)
     date_batismo   = models.DateField(verbose_name='Data Do Batismo', blank=True, null=True)
     consolidator   = models.CharField(verbose_name='Consolidador', max_length=40, blank=True)
-    schooling   = models.CharField(max_length=3,choices=ESCOLARIDADE,blank=True)
+    schooling      = models.CharField(max_length=3,choices=ESCOLARIDADE,blank=True)
     profession      = models.CharField(verbose_name='Profissão',max_length=40,
         help_text="Digite sua Ocupação",blank=True)
     #endereço
     uf             = models.CharField('UF',max_length=2, choices=UF,blank=True)
-    city         = models.CharField(max_length=50,verbose_name='Cidade',blank=True)
+    city           = models.CharField(max_length=50,verbose_name='Cidade',blank=True)
     street            = models.CharField('Rua',max_length=100,blank=True)
     number         = models.CharField('Numero',max_length=100,blank=True)
     neighborhood         = models.CharField('Bairro',max_length=100, blank=True, null=True)
@@ -58,7 +58,7 @@ class Leader(Member):
     def __str__(self):
         return str(self.user.first_name).upper() + ' ' + str(self.user.last_name).upper()
 
-#gera um slug randomico
+#gera um slug randomico pra modelo de Lider
 def leader_pre_save_receiver(sender,instance,*args,**kwargs):
     if not instance.slug:
         instance.slug = unique_slug_generator(instance)
@@ -72,12 +72,13 @@ def create_user_profile(sender, instance, created, **kwargs):
         Leader.objects.create(
             user=instance,
             name=instance.first_name +' '+ instance.last_name,
+            email=instance.email
     )
     instance.user.save()
 
 class Discipulo(Member):
     leader      = models.ForeignKey(Leader, on_delete=models.CASCADE,blank=True,null=True)
-    cell     = models.ForeignKey('core.Celula', on_delete=models.CASCADE,blank=True,null=True)
+    cell        = models.ForeignKey('core.Celula', on_delete=models.CASCADE,blank=True,null=True)
 
     class Meta:
     	verbose_name = 'Discipulo'

@@ -71,9 +71,11 @@
 							<span class="material-input"></span>
 						</div>
 					</div>
+				
 					<div class="col-md-3">
 						<div class="form-group label-floating is-empty">
 							<small>Lider de Geração</small>
+						    {{ form.non_field_errors }}
 							{{ form.leader.errors }}
 							{{form.leader}}
 							<span class="material-input"></span>

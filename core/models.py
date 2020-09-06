@@ -7,7 +7,6 @@ from django.urls import reverse
 from core.choices import SEXO_CHOICES,CATEGORIA_CHOICES,ESCOLARIDADE,UF,DIAS,CELULA_CHOICES,EVASAO
 from datetime import datetime
 
-
 class Celula(models.Model):
     name          = models.CharField(verbose_name='Nome do Grupo', max_length=100, blank=True)
     leader        = models.OneToOneField('members.Leader',on_delete=models.CASCADE)
@@ -30,6 +29,15 @@ class Celula(models.Model):
     def __str__(self):
         return str(self.leader) + ' Célula--' + str(self.name)
 
+#reunião de célula
+class Meeting(models.Model):
+    cell                  = models.ForeignKey('Celula',verbose_name="Nome da Célula",
+    blank=True,null=True,on_delete=models.CASCADE)
+    meeting_date          = models.DateField(verbose_name='Data Da Reunião')
+    amount_member_present = models.PositiveIntegerField(verbose_name='Nº  De Presentes',default=0)
+    amount_decicions      = models.PositiveIntegerField(verbose_name='Nº  De Decisões',default=0)
+    amount_visitors       = models.PositiveIntegerField(verbose_name='Nº  De Visitantes',default=0)
+    observation           = models.TextField(verbose_name='Observação',blank=True)
 
 class Evasao(models.Model):
     #dados pessoais

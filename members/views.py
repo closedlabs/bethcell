@@ -60,6 +60,7 @@ def leaders(request):
 def add_leader(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
+        print(form.data)
         if form.is_valid():
             user = form.save()
             user.refresh_from_db()  # load the leader instance created by the signal
@@ -71,7 +72,7 @@ def add_leader(request):
             return redirect('leaders')
     else:
         form = CustomUserCreationForm()
-    return render(request, 'leaders/add_leader.html', {'form': form})
+    return render(request, 'leaders/add_leader.html', {'form': form},locals())
 
 class LeaderDetailView(DetailView):
     model = Leader
